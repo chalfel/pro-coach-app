@@ -1,32 +1,32 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
-import { NavigationContainer, BaseRouter } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import * as Icon from 'react-feather';
-import { Header, NavBar } from './src/components';
-import { Home } from './src/screens';
+import { Feather as Icon } from '@expo/vector-icons';
+import { Home, Account } from './src/screens';
 
 const Tab = createBottomTabNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Header />
       <Tab.Navigator
         screenOptions={
-          ({ route, navigation }) => ({
+          ({ route }) => ({
             tabBarIcon: ({ color, size, focused }) => {
+              const activeColor = '#000';
+              const inactiveColor = '#bbb';
+
               if (route.name === 'Home') {
                 return (
                   focused
-                  ? <Icon.Home style={{ margin: '8px 0 0' }} />
-                  : <Icon.Home style={{ margin: '8px 0 0', color: '#ccc' }} />
+                  ? <Icon name="home" size={size} color={activeColor} />
+                  : <Icon name="home" size={size} color={inactiveColor} />
                 );
               } else if (route.name === 'Account') {
                 return (
                   focused
-                  ? <Icon.User style={{ margin: '8px 0 0' }} />
-                  : <Icon.User style={{ margin: '8px 0 0', color: '#ccc' }} />
+                  ? <Icon name="user" size={size} color={activeColor} />
+                  : <Icon name="user" size={size} color={inactiveColor} />
                 );
               }
             }
@@ -44,7 +44,7 @@ const App = () => {
           }
         }>
         <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Account" component={Home} />
+        <Tab.Screen name="Account" component={Account} />
       </Tab.Navigator>
     </NavigationContainer>
   );
