@@ -1,11 +1,11 @@
 import React from 'react';
-import { Container, Normal, Bold } from './styles';
+import { Container, Logo } from './styles';
+import logo from '../../../assets/inline-logo.png';
 
 const Header = () => {
   return (
     <Container>
-      <Normal>pro</Normal>
-      <Bold>coach</Bold>
+      <Logo source={logo} />
     </Container>
   );
 }
