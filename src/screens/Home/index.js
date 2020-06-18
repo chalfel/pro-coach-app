@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SearchBar } from '../../components';
+import { Header, SearchBar } from '../../components';
 import { Container } from './styles';
 // import axios from 'axios';
 
@@ -15,10 +15,8 @@ const Home = () => {
 
   return (
     <Container>
+      <Header />
       <SearchBar></SearchBar>
-      {
-        // proServices.map(service => <Card></Card>)
-      }
     </Container>
   );
 }

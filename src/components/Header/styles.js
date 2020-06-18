@@ -5,7 +5,7 @@ export const Container = styled.View`
   justify-content: center;
   align-items: center;
   height: 48px;
-  border-bottom-color: #ddd;
+  border-bottom-color: #eee;
   border-bottom-width: 1px;
 `;
 
@@ -15,4 +15,5 @@ export const Normal = styled.Text`
 
 export const Bold = styled.Text`
   font-size: 22px;
+  font-weight: bold;
 `;

@@ -1,9 +1,13 @@
 import React from 'react';
-import { Input } from './styles';
+import { Container, TextInput } from './styles';
 
 const SearchBar = () => {
   return (
-    <Input placeholder="Encontre coaches e games"></Input>
+    <Container>
+      <TextInput
+        placeholder="Encontre coaches e games"
+        placeholderTextColor="#aaa" />
+    </Container>
   );
 }
 
