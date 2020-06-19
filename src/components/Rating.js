@@ -1,20 +1,25 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import { Feather as Icon } from '@expo/vector-icons';
 
-const Container = styled.View``;
+const Container = styled.View`
+  flex-direction: row;
+`;
 
-const Value = styled.Text``;
+const Score = styled.Text`
+  color: #9c0000;
+`;
 
 const StarImage = styled.Image`
   width: 10px;
   height: 10px;
 `;
 
-const Rating = () => {
+const Rating = ({ score }) => {
   return (
     <Container>
-      <Value>3.0</Value>
-      <StarImage source="https://picsum.photos/200" />
+      <Score>{score}</Score>
+      <Icon name="star" size={16} color="#9c0000" />
     </Container>
   );
 }
