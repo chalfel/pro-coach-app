@@ -1,6 +1,6 @@
 import React from 'react';
-import { Header, Button } from '../../components';
-import { Container, Input } from './styles';
+import { Header, Button, Input } from '../../components';
+import { Container } from './styles';
 
 const Account = () => {
   return (

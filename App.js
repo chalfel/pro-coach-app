@@ -2,7 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather as Icon } from '@expo/vector-icons';
-import { Home, Account } from './src/screens';
+import { Home, Account, Checkout } from './src/screens';
 
 const Tab = createBottomTabNavigator();
 
@@ -28,6 +28,12 @@ const App = () => {
                   ? <Icon name="user" size={size} color={activeColor} />
                   : <Icon name="user" size={size} color={inactiveColor} />
                 );
+              } else if (route.name === 'Checkout') {
+                return (
+                  focused
+                  ? <Icon name="checkout" size={size} color={activeColor} />
+                  : <Icon name="checkout" size={size} color={inactiveColor} />
+                );
               }
             }
           })
@@ -45,6 +51,7 @@ const App = () => {
         }>
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Account" component={Account} />
+        <Tab.Screen name="Checkout" component={Checkout} />
       </Tab.Navigator>
     </NavigationContainer>
   );
