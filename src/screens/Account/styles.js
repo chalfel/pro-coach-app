@@ -1,8 +1,14 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.SafeAreaView`
+export const SafeAreaView = styled.SafeAreaView`
   flex: 1;
   background-color: #fff;
+`;
+
+export const BottomView = styled.View`
+  flex: 1;
+  border: 1px solid black;
+  justify-content: start;
 `;
 
 export const Input = styled.TextInput`

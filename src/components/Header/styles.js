@@ -9,11 +9,7 @@ export const Container = styled.View`
   border-bottom-width: 1px;
 `;
 
-export const Normal = styled.Text`
-  font-size: 22px;
-`;
-
-export const Bold = styled.Text`
-  font-size: 22px;
-  font-weight: bold;
+export const Logo = styled.Image`
+  width: 150px;
+  height: 30px;
 `;

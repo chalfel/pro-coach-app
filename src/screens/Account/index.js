@@ -1,24 +1,22 @@
 import React from 'react';
-import { Header, Button, Input } from '../../components';
-import { Container } from './styles';
+import { Header, Button } from '../../components';
+import { SafeAreaView, BottomView, Input } from './styles';
 
 const Account = () => {
   return (
-    <Container>
+    <SafeAreaView>
       <Header />
       <Input placeholder="E-mail" />
       <Input placeholder="Senha" />
       <Button
         text="Entrar"
-        buttonColor="#3b3"
-        textColor="#fff"
-        shadow />
+        buttonColor="#9c0000"
+        textColor="#fff" />
       <Button
         text="Cadastrar"
         buttonColor="#fff"
-        textColor="#333"
-        borderColor="#eee" />
-    </Container>
+        textColor="#000" />
+    </SafeAreaView>
   );
 }
 

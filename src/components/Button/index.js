@@ -1,28 +1,11 @@
 import React from 'react';
-import { Container, Text } from './styles.js';
+import { Touchable, Text } from './styles.js';
 
-const Button = (
-  {
-    text = '',
-    textColor = '#fff',
-    buttonColor = '#000',
-    borderColor = 'transparent',
-    shadow = false
-  } = {}
-) => {
-  const containerCustomStyle = {
-    backgroundColor: buttonColor,
-    border: `1px solid ${borderColor}`
-  };
-
-  const textCustomStyle = {
-    color: textColor
-  };
-
+const Button = ({ text = '', buttonColor, textColor } = {}) => {
   return (
-    <Container style={containerCustomStyle}>
-      <Text style={textCustomStyle}>{text}</Text>
-    </Container>
+    <Touchable buttonColor={buttonColor}>
+      <Text textColor={textColor}>{text}</Text>
+    </Touchable>
   );
 }
 

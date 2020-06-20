@@ -1,21 +1,37 @@
 import React from 'react';
-import { Rating } from '.';
+import { Rating } from '..';
 import {
-  Container,
+  CardBackgound,
+  ProfilePicture,
+  CoachName,
   GameTitle,
-  CoachTitle,
-  Achievements
+  ServiceTitle,
+  ServiceDetails,
+  TitleWithImage,
+  Title
 } from './styles';
 
-const Card = ({ profilePic, game, coach, rating, achievements }) => {
+const Card = ({
+  profilePic,
+  gameTitle,
+  coachName,
+  score,
+  serviceTitle,
+  serviceDetails
+}) => {
   return (
-    <Container>
-      <ProfilePicture source={{ uri: 'https://picsum.photos/200' }} />
-      <GameTitle>FIFA 20</GameTitle>
-      <CoachTitle>CARD</CoachTitle>
-      <Rating></Rating>
-      <Achievements></Achievements>
-    </Container>
+    <CardBackgound>
+      <TitleWithImage>
+        <ProfilePicture source={{ uri: 'https://picsum.photos/200' }} />
+        <Title>
+          <CoachName>{coachName}</CoachName>
+          <GameTitle>{gameTitle}</GameTitle>
+          <Rating score={score} />
+        </Title>
+      </TitleWithImage>
+      <ServiceTitle>{serviceTitle}</ServiceTitle>
+      <ServiceDetails>{serviceDetails}</ServiceDetails>
+    </CardBackgound>
   );
 }
 
