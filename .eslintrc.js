@@ -27,6 +27,7 @@ module.exports = {
     ],
     "rules": {
         "prettier/prettier": "error",
+        "indent": ["error", 2],
         "react/jsx-filename-extension": [
         "warn",
         {
