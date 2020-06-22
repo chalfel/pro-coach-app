@@ -18,12 +18,12 @@ const Card = ({
   score,
   serviceTitle,
   serviceDetails,
-  onPress
+  handleOnPress
 }) => {
   const image = profilePic || { uri: 'https://picsum.photos/200' };
 
   return (
-    <CardBackgound onPress={onPress}>
+    <CardBackgound onPress={handleOnPress}>
       <TitleContainer>
         <ProfilePicture source={image} />
         <Title>
