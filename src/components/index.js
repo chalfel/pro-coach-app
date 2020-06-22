@@ -6,6 +6,7 @@ import Header from './Header';
 import Input from './Input';
 import Rating from './Rating';
 import SearchBar from './SearchBar';
+import ProfileImage from './ProfileImage';
 
 export {
   Card,
@@ -16,4 +17,5 @@ export {
   Input,
   Container,
   AddServiceButton,
+  ProfileImage,
 };
