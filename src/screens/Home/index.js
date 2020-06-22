@@ -1,19 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Feather as Icon } from '@expo/vector-icons';
+import { createStackNavigator } from '@react-navigation/stack';
 import { Header, SearchBar, Card } from '../../components';
+import { Account } from '../../screens';
 import { Container, Title } from './styles';
-// import axios from 'axios';
 
-const Home = () => {
-  const [proServices, setProServices] = useState([]);
+const Stack = createStackNavigator();
 
-  useEffect(() => {
-    // const services = axios
-    //   .get('https://procoach-prod.herokuapp.com/user')
-    //   .then(res => setProServices(res.data))
-    //   .catch(console.log)
-  });
+const HomeStack = () => {
+  const noHeader = {
+    header: () => null
+  };
 
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={Home} options={noHeader} />
+      { /* <Stack.Screen name="Account" component={CoachService} /> */ }
+    </Stack.Navigator>
+  );
+}
+
+const Home = ({ navigation }) => {
   return (
     <Container>
       <Header />
@@ -23,6 +30,7 @@ const Home = () => {
         <Icon name="chevron-right" size={18} />
       </Title>
       <Card
+        onPress={() => navigation.navigate('Account')}
         coachName="Super coach"
         gameTitle="FIFÃO"
         serviceTitle="Esse é meu serviço"
@@ -42,4 +50,4 @@ const Home = () => {
   );
 }
 
-export default Home;
+export default HomeStack;
