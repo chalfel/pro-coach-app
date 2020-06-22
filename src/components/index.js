@@ -1,11 +1,11 @@
-import Header from './Header';
-import SearchBar from './SearchBar';
-import Card from './Card';
-import Rating from './Rating';
-import Button from './Button';
-import Input from './Input';
-import Container from './Container';
 import AddServiceButton from './AddServiceButton';
+import Button from './Button';
+import Card from './Card';
+import Container from './Container';
+import Header from './Header';
+import Input from './Input';
+import Rating from './Rating';
+import SearchBar from './SearchBar';
 
 export {
   Card,
@@ -15,5 +15,5 @@ export {
   Button,
   Input,
   Container,
-  AddServiceButton
-}
+  AddServiceButton,
+};
