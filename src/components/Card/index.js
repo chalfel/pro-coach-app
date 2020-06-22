@@ -1,5 +1,5 @@
 import React from 'react';
-import { Rating } from '..';
+import { Rating } from '../../components';
 import {
   CardBackgound,
   ProfilePicture,
@@ -7,7 +7,7 @@ import {
   GameTitle,
   ServiceTitle,
   ServiceDetails,
-  TitleWithImage,
+  TitleContainer,
   Title
 } from './styles';
 
@@ -17,18 +17,21 @@ const Card = ({
   coachName,
   score,
   serviceTitle,
-  serviceDetails
+  serviceDetails,
+  handleOnPress
 }) => {
+  const image = profilePic || { uri: 'https://picsum.photos/200' };
+
   return (
-    <CardBackgound>
-      <TitleWithImage>
-        <ProfilePicture source={{ uri: 'https://picsum.photos/200' }} />
+    <CardBackgound onPress={handleOnPress}>
+      <TitleContainer>
+        <ProfilePicture source={image} />
         <Title>
           <CoachName>{coachName}</CoachName>
           <GameTitle>{gameTitle}</GameTitle>
           <Rating score={score} />
         </Title>
-      </TitleWithImage>
+      </TitleContainer>
       <ServiceTitle>{serviceTitle}</ServiceTitle>
       <ServiceDetails>{serviceDetails}</ServiceDetails>
     </CardBackgound>
