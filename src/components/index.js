@@ -5,6 +5,7 @@ import Rating from './Rating';
 import Button from './Button';
 import Input from './Input';
 import Container from './Container';
+import AddServiceButton from './AddServiceButton';
 
 export {
   Card,
@@ -13,5 +14,6 @@ export {
   Rating,
   Button,
   Input,
-  Container
+  Container,
+  AddServiceButton
 }
