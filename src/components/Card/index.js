@@ -1,15 +1,17 @@
-import React from 'react';
-import { Rating } from '../../components';
+import React from 'react'
+
+import { Rating } from '..'
+
 import {
   CardBackgound,
-  ProfilePicture,
   CoachName,
   GameTitle,
-  ServiceTitle,
+  ProfilePicture,
   ServiceDetails,
+  ServiceTitle,
+  Title,
   TitleContainer,
-  Title
-} from './styles';
+} from './styles'
 
 const Card = ({
   profilePic,
@@ -18,9 +20,9 @@ const Card = ({
   score,
   serviceTitle,
   serviceDetails,
-  handleOnPress
+  handleOnPress,
 }) => {
-  const image = profilePic || { uri: 'https://picsum.photos/200' };
+  const image = profilePic || { uri: 'https://picsum.photos/200' }
 
   return (
     <CardBackgound onPress={handleOnPress}>
@@ -35,7 +37,7 @@ const Card = ({
       <ServiceTitle>{serviceTitle}</ServiceTitle>
       <ServiceDetails>{serviceDetails}</ServiceDetails>
     </CardBackgound>
-  );
+  )
 }
 
-export default Card;
+export default Card

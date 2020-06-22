@@ -1,6 +1,6 @@
-import React from 'react';
 import { Feather as Icon } from '@expo/vector-icons';
 import { Container, Score, Icon } from './styles';
+import React from 'react';
 
 const Rating = ({ score }) => {
   return (
