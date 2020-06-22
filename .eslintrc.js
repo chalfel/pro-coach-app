@@ -41,6 +41,7 @@ module.exports = {
     "react/prop-types": "off",
     "no-param-reassign": "off",
     "no-console": "off",
+    "import/no-cycle": "off",
     "import-helpers/order-imports": [
       "warn",
       {
