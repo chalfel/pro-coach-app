@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const CardBackgound = styled.View`
+export const CardBackgound = styled.TouchableOpacity`
   background: #fff;
   box-shadow: 2px 2px 10px #ddd;
   margin: 16px 0 48px 16px;
@@ -9,7 +9,7 @@ export const CardBackgound = styled.View`
   border-radius: 8px;
 `;
 
-export const TitleWithImage = styled.View`
+export const TitleContainer = styled.View`
   flex-direction: row;
 `;
 
