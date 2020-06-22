@@ -45,6 +45,7 @@ module.exports = {
             {
                 "newlinesBetween": "always", // new line between groups
                 "groups": [
+                    "/^react/",
                     "module",
                     ["parent", "sibling", "index"],
                 ],
