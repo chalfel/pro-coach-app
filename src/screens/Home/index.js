@@ -1,33 +1,45 @@
-import React, { useState, useEffect } from 'react';
-import { Feather as Icon } from '@expo/vector-icons';
-import { Header, SearchBar, Card } from '../../components';
-import { Container, Title } from './styles';
-// import axios from 'axios';
+import React, { useState, useEffect } from 'react'
+import { createStackNavigator } from '@react-navigation/stack'
 
-const Home = () => {
-  const [proServices, setProServices] = useState([]);
+import { Feather as Icon } from '@expo/vector-icons'
 
-  useEffect(() => {
-    // const services = axios
-    //   .get('https://procoach-prod.herokuapp.com/user')
-    //   .then(res => setProServices(res.data))
-    //   .catch(console.log)
-  });
+import { Header, SearchBar, Card } from '../../components'
 
+import { Account } from '..'
+
+import { Container, Title } from './styles'
+
+const HomeStack = () => {
+  const Stack = createStackNavigator()
+  const noHeader = {
+    header: () => null,
+  }
+
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={Home} options={noHeader} />
+      {/* <Stack.Screen name="Account" component={CoachService} /> */}
+    </Stack.Navigator>
+  )
+}
+
+const Home = ({ navigation }) => {
   return (
     <Container>
       <Header />
-      <SearchBar></SearchBar>
+      <SearchBar />
       <Title>
         Top coaches
         <Icon name="chevron-right" size={18} />
       </Title>
       <Card
+        onPress={() => navigation.navigate('Account')}
         coachName="Super coach"
         gameTitle="FIFÃO"
         serviceTitle="Esse é meu serviço"
         serviceDetails="Você vai curtir pra carai esse serviço!!!!!"
-        score="4.3" />
+        score="4.3"
+      />
       <Title>
         Últimos lançamentos
         <Icon name="chevron-right" size={18} />
@@ -37,9 +49,10 @@ const Home = () => {
         gameTitle="FIFÃO"
         serviceTitle="Esse é meu serviço"
         serviceDetails="Você vai curtir pra carai esse serviço!!!!!"
-        score="4.3" />
+        score="4.3"
+      />
     </Container>
-  );
+  )
 }
 
-export default Home;
+export default HomeStack

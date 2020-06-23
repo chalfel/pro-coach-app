@@ -1,15 +1,17 @@
-import React from 'react';
-import { Rating } from '..';
+import React from 'react'
+
+import { Rating } from '..'
+
 import {
   CardBackgound,
-  ProfilePicture,
   CoachName,
   GameTitle,
-  ServiceTitle,
+  ProfilePicture,
   ServiceDetails,
-  TitleWithImage,
-  Title
-} from './styles';
+  ServiceTitle,
+  Title,
+  TitleContainer,
+} from './styles'
 
 const Card = ({
   profilePic,
@@ -17,22 +19,25 @@ const Card = ({
   coachName,
   score,
   serviceTitle,
-  serviceDetails
+  serviceDetails,
+  handleOnPress,
 }) => {
+  const image = profilePic || { uri: 'https://picsum.photos/200' }
+
   return (
-    <CardBackgound>
-      <TitleWithImage>
-        <ProfilePicture source={{ uri: 'https://picsum.photos/200' }} />
+    <CardBackgound onPress={handleOnPress}>
+      <TitleContainer>
+        <ProfilePicture source={image} />
         <Title>
           <CoachName>{coachName}</CoachName>
           <GameTitle>{gameTitle}</GameTitle>
           <Rating score={score} />
         </Title>
-      </TitleWithImage>
+      </TitleContainer>
       <ServiceTitle>{serviceTitle}</ServiceTitle>
       <ServiceDetails>{serviceDetails}</ServiceDetails>
     </CardBackgound>
-  );
+  )
 }
 
-export default Card;
+export default Card

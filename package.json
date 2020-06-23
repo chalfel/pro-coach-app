@@ -11,20 +11,35 @@
     "@expo/vector-icons": "^10.2.0",
     "@react-navigation/bottom-tabs": "^5.5.2",
     "@react-navigation/native": "^5.5.1",
+    "@react-navigation/stack": "^5.5.1",
     "axios": "^0.19.2",
     "expo": "~37.0.3",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",
     "react-feather": "^2.0.8",
     "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.1.tar.gz",
+    "react-native-gesture-handler": "~1.6.0",
     "react-native-safe-area-context": "0.7.3",
     "react-native-screens": "~2.2.0",
     "react-native-web": "~0.11.7",
+    "react-navigation": "^4.3.9",
+    "react-navigation-stack": "^2.7.0",
     "styled-components": "^5.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
-    "babel-preset-expo": "~8.1.0"
+    "babel-eslint": "^10.1.0",
+    "babel-preset-expo": "~8.1.0",
+    "eslint": "^7.3.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-import-helpers": "^1.0.2",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.4",
+    "prettier": "^2.0.5"
   },
   "private": true
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Button } from '../../components';
+import { Header, Button, ProfileImage } from '../../components';
 import { SafeAreaView, BottomView, Input } from './styles';
 
 const Account = () => {
