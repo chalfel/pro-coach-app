@@ -1,19 +1,30 @@
-import React from 'react';
+import React from 'react'
 
-import { Container } from './styles';
+import { Container, TextInput } from './styles'
 
+const Input = ({
+  handleOnChange,
+  value,
+  type,
+  placeholder,
+  width,
+  height,
+  icon,
+}) => {
+  return (
+    <Container>
+      { icon }
+      <TextInput
+        onChange={handleOnChange}
+        placeholder={placeholder}
+        placeholderTextColor="#aaa"
+        value={value}
+        width={width}
+        height={height}
+        secureTextEntry={type === 'password'}
+      />
+    </Container>
+  )
+}
 
-const Input = ({ handleOnChange, value, type, placeholder, width, height }) => 
-    (
-        <Container 
-            placeholder={placeholder} 
-            onChange={handleOnChange} 
-            value={value} 
-            type={type}
-            width={width}
-            height={height}
-            />
-    )
-
-
-export default Input;
+export default Input
