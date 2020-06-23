@@ -1,6 +1,8 @@
-import { Feather as Icon } from '@expo/vector-icons';
-import { Container, Score } from './styles';
-import React from 'react';
+import React from 'react'
+
+import { Feather as Icon } from '@expo/vector-icons'
+
+import { Container, Score } from './styles'
 
 const Rating = ({ score }) => {
   return (
@@ -8,7 +10,7 @@ const Rating = ({ score }) => {
       <Score>{score}</Score>
       <Icon name="star" size={16} color="#9c0000" />
     </Container>
-  );
+  )
 }
 
-export default Rating;
+export default Rating
