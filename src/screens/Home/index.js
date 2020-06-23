@@ -9,7 +9,6 @@ import { Account } from '..'
 
 import { Container, Title } from './styles'
 
-
 const HomeStack = () => {
   const Stack = createStackNavigator()
   const noHeader = {
