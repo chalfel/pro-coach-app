@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-
-import { Feather as Icon } from '@expo/vector-icons'
 import { createStackNavigator } from '@react-navigation/stack'
 
+import { Feather as Icon } from '@expo/vector-icons'
 
 import { Header, SearchBar, Card } from '../../components'
 
