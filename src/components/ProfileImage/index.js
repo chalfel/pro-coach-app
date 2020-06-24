@@ -4,13 +4,13 @@ import { Container, Image } from './styles';
 
 const ProfileImage = ({ size, imgSrc, children }) =>  {
 
-    return (
-        <Container size={size}>
-            <Image size={size} source={imgSrc}/>
-            { children }
-        </Container>
+  return (
+      <Container size={size}>
+          <Image size={size} source={imgSrc}/>
+          { children }
+      </Container>
 
-    )
+  )
 
 }
 
