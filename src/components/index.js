@@ -1,13 +1,14 @@
-import AddServiceButton from './AddServiceButton';
-import Button from './Button';
-import Card from './Card';
-import Container from './Container';
-import Header from './Header';
-import Input from './Input';
-import Rating from './Rating';
-import SearchBar from './SearchBar';
-import ProfileImage from './ProfileImage';
-import ImageUpload from './ImageUpload';
+import AddServiceButton from './AddServiceButton'
+import Button from './Button'
+import Card from './Card'
+import Container from './Container'
+import FormTitle from './FormTitle'
+import Header from './Header'
+import ImageUpload from './ImageUpload'
+import Input from './Input'
+import ProfileImage from './ProfileImage'
+import Rating from './Rating'
+import SearchBar from './SearchBar'
 
 export {
   Card,
@@ -19,5 +20,6 @@ export {
   Container,
   AddServiceButton,
   ProfileImage,
-  ImageUpload
-};
+  ImageUpload,
+  FormTitle
+}
