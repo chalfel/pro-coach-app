@@ -1,24 +1,21 @@
-import React, { useState, useEffect } from 'react'
-import { createStackNavigator } from '@react-navigation/stack'
+import React from 'react'
 
 import { Feather as Icon } from '@expo/vector-icons'
+import { createStackNavigator } from '@react-navigation/stack'
 
-import { Header, SearchBar, Card } from '../../components'
+import { Header, SearchBar, Card, Button } from '../../components'
+import { defaultNavHeader, noNavHeader } from '../../configs/components'
+import { Container, Title } from './styles'
 
 import { Account } from '..'
 
-import { Container, Title } from './styles'
+const Stack = createStackNavigator()
 
 const HomeStack = () => {
-  const Stack = createStackNavigator()
-  const noHeader = {
-    header: () => null,
-  }
-
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={Home} options={noHeader} />
-      {/* <Stack.Screen name="Account" component={CoachService} /> */}
+    <Stack.Navigator screenOptions={defaultNavHeader}>
+      <Stack.Screen name="Home" component={Home} options={noNavHeader} />
+      <Stack.Screen name="Account" component={Account} />
     </Stack.Navigator>
   )
 }
@@ -26,6 +23,9 @@ const HomeStack = () => {
 const Home = ({ navigation }) => {
   return (
     <Container>
+      <Button primary handleOnPress={() => navigation.navigate('Account')}>
+        Click me for testing nav
+      </Button>
       <Header />
       <SearchBar />
       <Title>
@@ -33,7 +33,6 @@ const Home = ({ navigation }) => {
         <Icon name="chevron-right" size={18} />
       </Title>
       <Card
-        onPress={() => navigation.navigate('Account')}
         coachName="Super coach"
         gameTitle="FIFÃO"
         serviceTitle="Esse é meu serviço"
