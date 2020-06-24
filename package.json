@@ -7,6 +7,9 @@
     "web": "expo start --web",
     "eject": "expo eject"
   },
+  "lint-staged": {
+    "*.js": ["yarn eslint --fix"]
+  },
   "dependencies": {
     "@expo/vector-icons": "^10.2.0",
     "@react-navigation/bottom-tabs": "^5.5.2",
@@ -43,6 +46,7 @@
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^4.0.4",
     "eslint-plugin-standard": "^4.0.1",
+    "lint-staged": "^10.2.11",
     "prettier": "^2.0.5"
   },
   "private": true
