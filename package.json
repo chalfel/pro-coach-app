@@ -7,16 +7,6 @@
     "web": "expo start --web",
     "eject": "expo eject"
   },
-  "lint-staged": {
-    "*.js": [
-      "yarn eslint --fix"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "dependencies": {
     "@expo/vector-icons": "^10.2.0",
     "@react-navigation/bottom-tabs": "^5.5.2",
