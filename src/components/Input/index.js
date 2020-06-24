@@ -9,11 +9,11 @@ const Input = ({
   placeholder,
   width,
   height,
-  icon,
+  icon
 }) => {
   return (
     <Container>
-      { icon }
+      {icon}
       <TextInput
         onChange={handleOnChange}
         placeholder={placeholder}
