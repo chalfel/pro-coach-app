@@ -7,6 +7,7 @@ import Input from './Input';
 import Rating from './Rating';
 import SearchBar from './SearchBar';
 import ProfileImage from './ProfileImage';
+import ImageUpload from './ImageUpload';
 
 export {
   Card,
@@ -18,4 +19,5 @@ export {
   Container,
   AddServiceButton,
   ProfileImage,
+  ImageUpload
 };

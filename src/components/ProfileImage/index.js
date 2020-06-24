@@ -1,7 +1,17 @@
 import React from 'react';
 
-import { Container } from './styles';
+import { Container, Image } from './styles';
 
-const ProfileImage = ({ size, imgSrc }) =>  <Container size={size} source={imgSrc} />
+const ProfileImage = ({ size, imgSrc, children }) =>  {
+
+  return (
+    <Container size={size}>
+      <Image size={size} source={imgSrc}/>
+      { children }
+    </Container>
+
+  )
+
+}
 
 export default ProfileImage;
