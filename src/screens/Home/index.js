@@ -32,7 +32,7 @@ const HomeStack = () => {
 }
 
 const Home = ({ navigation }) => {
-  const [topServices, setTopServices] = useState([{}])
+  const [topServices, setTopServices] = useState([])
   const [recentServices, setRecentServices] = useState([])
   const [inputValue, setInputValue] = useState('')
   const placeholder = 'Encontre jogos e coaches'
