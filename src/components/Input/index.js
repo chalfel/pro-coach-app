@@ -4,24 +4,28 @@ import { Container, TextInput } from './styles'
 
 const Input = ({
   handleOnChange,
+  handleOnSubmit,
   value,
   type,
   placeholder,
   width,
   height,
-  icon
+  icon,
+  returnKeyType
 }) => {
   return (
     <Container>
       {icon}
       <TextInput
-        onChange={handleOnChange}
+        onChangeText={handleOnChange}
+        onSubmitEditing={({ nativeEvent }) => handleOnSubmit(nativeEvent.text)}
         placeholder={placeholder}
         placeholderTextColor="#aaa"
         value={value}
         width={width}
         height={height}
         secureTextEntry={type === 'password'}
+        returnKeyType={returnKeyType}
       />
     </Container>
   )

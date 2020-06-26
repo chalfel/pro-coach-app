@@ -7,8 +7,8 @@ import { Container, Score } from './styles'
 const Rating = ({ score }) => {
   return (
     <Container>
-      <Score>{score}</Score>
-      <Icon name="star" size={16} color="#9c0000" />
+      <Score>{score && score.toFixed(2)}</Score>
+      <Icon name="star" size={16} color="#F1C115" />
     </Container>
   )
 }

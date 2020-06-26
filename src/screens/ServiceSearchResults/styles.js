@@ -5,9 +5,6 @@ export const Container = styled.SafeAreaView`
   background-color: #fff;
 `
 
-export const Title = styled.Text`
-  font-size: 22px;
-  margin: 16px 0 0 16px;
+export const ScrollView = styled.ScrollView`
+  flex: 1;
 `
-
-export const ScrollView = styled.ScrollView``
