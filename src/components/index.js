@@ -4,6 +4,7 @@ import Card from './Card'
 import Container from './Container'
 import FormTitle from './FormTitle'
 import FormSubtitle from './FormSubtitle'
+import GameCard from './GameCard'
 import Header from './Header'
 import ImageUpload from './ImageUpload'
 import Input from './Input'
@@ -22,6 +23,7 @@ export {
   AddServiceButton,
   ProfileImage,
   ImageUpload,
+  GameCard,
   FormTitle,
   FormSubtitle
 }
