@@ -3,6 +3,7 @@ import Button from './Button'
 import Card from './Card'
 import Container from './Container'
 import FormTitle from './FormTitle'
+import FormSubtitle from './FormSubtitle'
 import Header from './Header'
 import ImageUpload from './ImageUpload'
 import Input from './Input'
@@ -22,4 +23,5 @@ export {
   ProfileImage,
   ImageUpload,
   FormTitle
+  FormSubtitle
 }
