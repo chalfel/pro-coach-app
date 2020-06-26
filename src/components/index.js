@@ -22,6 +22,6 @@ export {
   AddServiceButton,
   ProfileImage,
   ImageUpload,
-  FormTitle
+  FormTitle,
   FormSubtitle
 }
