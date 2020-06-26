@@ -2,6 +2,7 @@ import AddServiceButton from './AddServiceButton'
 import Button from './Button'
 import Card from './Card'
 import Container from './Container'
+import FormTitle from './FormTitle'
 import FormSubtitle from './FormSubtitle'
 import Header from './Header'
 import ImageUpload from './ImageUpload'
@@ -21,5 +22,6 @@ export {
   AddServiceButton,
   ProfileImage,
   ImageUpload,
+  FormTitle,
   FormSubtitle
 }
