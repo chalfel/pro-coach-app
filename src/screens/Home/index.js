@@ -35,9 +35,11 @@ const Home = ({ navigation }) => {
   const [topServices, setTopServices] = useState([])
   const [recentServices, setRecentServices] = useState([])
   const [inputValue, setInputValue] = useState('')
+
   const placeholder = 'Encontre jogos e coaches'
   const searchIcon = <Icon name="search" size={24} color="#aaa" />
   const autoCorrectSearch = false
+  const returnKeyType = 'search'
 
   useEffect(() => {
     const topServicesParams = {
@@ -82,11 +84,12 @@ const Home = ({ navigation }) => {
               text,
               placeholder,
               searchIcon,
-              autoCorrectSearch
+              autoCorrectSearch,
+              returnKeyType
             })
           }
         }}
-        returnKeyType="search"
+        returnKeyType={returnKeyType}
       />
 
       <Title>
