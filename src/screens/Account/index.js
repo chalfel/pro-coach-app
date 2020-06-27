@@ -1,7 +1,43 @@
 import React from 'react'
 
+import { Feather as Icon } from '@expo/vector-icons'
+import { createStackNavigator } from '@react-navigation/stack'
+
 import { Header, Button } from '../../components'
+import { defaultNavHeader, noNavHeader } from '../../configs/components'
 import { SafeAreaView, Input } from './styles'
+
+import { CoachRegister, Info } from '..'
+
+const CoachRegisterSucess = () => {
+  return (
+    <Info
+      icon={<Icon name="check-circle" size={38} color="#00ca14" />}
+      title="Finalizado"
+      description="Vamos entrar com contato em breve, fique de olho no seu e-mail!"
+    />
+  )
+}
+
+const Stack = createStackNavigator()
+
+const AccountStack = () => {
+  return (
+    <Stack.Navigator screenOptions={defaultNavHeader}>
+      <Stack.Screen name="Account" component={Account} options={noNavHeader} />
+      <Stack.Screen
+        name="CoachRegister"
+        component={CoachRegister}
+        options={{ title: 'Cadastrar' }}
+      />
+      <Stack.Screen
+        name="CoachRegisterSuccess"
+        component={CoachRegisterSucess}
+        options={{ title: 'Cadastrar' }}
+      />
+    </Stack.Navigator>
+  )
+}
 
 const Account = () => {
   return (
@@ -15,4 +51,4 @@ const Account = () => {
   )
 }
 
-export default Account
+export default AccountStack
