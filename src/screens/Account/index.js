@@ -1,23 +1,44 @@
 import React from 'react'
-import { Header, Button } from '../../components'
-import { SafeAreaView, Input } from './styles'
 
+import { Feather as Icon } from '@expo/vector-icons'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import { Header, Button } from '../../components'
 import { defaultNavHeader, noNavHeader } from '../../configs/components'
 import { SafeAreaView, Container } from './styles'
 
-import { Login, MyAccount, Register, RegisterSuccess } from '..'
+import { Login, MyAccount, Register, RegisterSuccess, CoachRegister, Info  } from '..'
 
 const Stack = createStackNavigator()
 
+const CoachRegisterSucess = () => {
+  return (
+    <Info
+      icon={<Icon name="check-circle" size={38} color="#00ca14" />}
+      title="Finalizado"
+      description="Vamos entrar com contato em breve, fique de olho no seu e-mail!"
+    />
+  )
+}
+
+
 const AccountStack = () => {
   const user = { nickname: 'josezin' }
+
   return (
     <Stack.Navigator screenOptions={defaultNavHeader}>
       <Stack.Screen name="Account" component={Account} options={noNavHeader} />
       <Stack.Screen
+        name="CoachRegister"
+        component={CoachRegister}
+        options={{ title: 'Cadastrar' }}
+      />
+      <Stack.Screen
+        name="CoachRegisterSuccess"
+        component={CoachRegisterSucess}
+        options={{ title: 'Cadastrar' }}
+      />
+      <Stack.Screen 
         name="Login"
         component={Login}
         options={{ title: 'Entrar' }}

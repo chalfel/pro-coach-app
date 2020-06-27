@@ -10,12 +10,10 @@ const Input = ({
   placeholder,
   width,
   height,
-  icon,
   returnKeyType
 }) => {
   return (
     <Container>
-      {icon}
       <TextInput
         onChangeText={handleOnChange}
         onSubmitEditing={({ nativeEvent }) => handleOnSubmit(nativeEvent.text)}
