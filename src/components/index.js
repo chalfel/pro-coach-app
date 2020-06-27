@@ -2,12 +2,13 @@ import AddServiceButton from './AddServiceButton'
 import Button from './Button'
 import Card from './Card'
 import Container from './Container'
-import FormTitle from './FormTitle'
 import FormSubtitle from './FormSubtitle'
 import GameCard from './GameCard'
+import FormTitle from './FormTitle'
 import Header from './Header'
 import ImageUpload from './ImageUpload'
 import Input from './Input'
+import Logo from './Logo'
 import ProfileImage from './ProfileImage'
 import Rating from './Rating'
 import SearchBar from './SearchBar'
@@ -25,5 +26,6 @@ export {
   ImageUpload,
   GameCard,
   FormTitle,
-  FormSubtitle
+  FormSubtitle,
+  Logo
 }
