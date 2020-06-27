@@ -7,7 +7,13 @@ import { apiBaseUrl, coachServicesEndpoint } from '../../configs/connection'
 import { Container, ScrollView } from './styles'
 
 const ServiceSearchResults = ({ route }) => {
-  const { text, placeholder, searchIcon, autoCorrectSearch } = route.params
+  const {
+    text,
+    placeholder,
+    searchIcon,
+    autoCorrectSearch,
+    returnKeyType
+  } = route.params
   const [searchResults, setSearchResults] = useState([])
   const [searchText, setSearchText] = useState(text)
   const [inputValue, setInputValue] = useState(text)
@@ -36,6 +42,7 @@ const ServiceSearchResults = ({ route }) => {
         autoCorrect={autoCorrectSearch}
         handleOnSubmit={(text) => setSearchText(text)}
         handleOnChange={(text) => setInputValue(text)}
+        returnKeyType={returnKeyType}
       />
       <ScrollView>
         {searchResults.map(({ _id, user, game, name, description, rating }) => (
