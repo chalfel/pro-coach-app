@@ -23,6 +23,10 @@ const CoachService = ({ navigation }) => {
       .catch((e) => console.log(e))
   }
 
+  const handleOnChange = ({ target }) => {
+    setValue(target.value)
+  }
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -32,7 +36,7 @@ const CoachService = ({ navigation }) => {
         placeholder="E-mail"
         returnKeyType="done"
         value={value}
-        handleOnChange={setValue}
+        handleOnChange={handleOnChange}
         handleOnSubmit={() => {}}
       ></Input>
       <Button primary handleOnPress={saveCoachEmail}>
