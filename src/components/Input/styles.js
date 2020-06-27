@@ -13,7 +13,7 @@ export const Container = styled.View`
 export const TextInput = styled.TextInput`
   flex-grow: 1;
   height: ${(props) => props.height || '48px'};
-  margin: 0 0 0 0px;
+  margin: 0;
   font-size: 18px;
   text-align: center;
 `
