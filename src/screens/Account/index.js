@@ -1,4 +1,6 @@
 import React from 'react'
+import { Header, Button } from '../../components'
+import { SafeAreaView, Input } from './styles'
 
 import { createStackNavigator } from '@react-navigation/stack'
 
@@ -42,7 +44,6 @@ const AccountStack = () => {
 const Account = ({ navigation }) => {
   return (
     <SafeAreaView>
-      <Header />
       <Container>
         <Button handleOnPress={() => navigation.navigate('Register')} primary>
           Cadastrar

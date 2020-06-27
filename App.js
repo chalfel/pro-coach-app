@@ -31,9 +31,9 @@ const App = () => {
               )
             } else if (route.name === 'Checkout') {
               return focused ? (
-                <Icon name="checkout" size={size} color={activeColor} />
+                <Icon name="coffee" size={size} color={activeColor} />
               ) : (
-                <Icon name="checkout" size={size} color={inactiveColor} />
+                <Icon name="coffee" size={size} color={inactiveColor} />
               )
             }
           }
