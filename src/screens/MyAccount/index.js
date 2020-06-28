@@ -1,94 +1,88 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 
 import { ImageUpload, Input, Button, FormTitle } from '../../components'
+import { AuthContext } from '../../contexts'
+import { uploadImage } from '../../utils/uploadImages'
 import { SafeAreaView } from './styles'
 
 const MyAccount = () => {
-  const [user, setUser] = useState({
+  const { signed, user, signOut, updateUser } = useContext(AuthContext)
+  const [userInfo, setUserInfo] = useState({
     imgUrl: ' ',
     name: '',
-    nickname: '',
+    username: '',
     skype: '',
     discord: '',
     email: ''
   })
 
   useEffect(() => {
-    const isAuth = true
-    const userInfo = {
-      imgUrl:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Mark_Zuckerberg_F8_2018_Keynote_%28cropped_2%29.jpg/220px-Mark_Zuckerberg_F8_2018_Keynote_%28cropped_2%29.jpg',
-      name: 'Caio Felix',
-      nickname: 'chalfel',
-      skype: 'chalfel',
-      discord: 'chalfel',
-      email: 'caiohalcsik@gmail.com'
+    if (signed) {
+      setUserInfo((prev) => ({ ...prev, ...user }))
     }
-    if (isAuth) {
-      setUser(userInfo)
-    }
-  }, [])
+  }, [user])
 
   const handleOnEmailChange = (e) => {
     const email = e.target.value
-    setUser((prev) => ({ ...prev, email }))
+    setUserInfo((prev) => ({ ...prev, email }))
   }
 
   const handleOnSkypeChange = (e) => {
     const skype = e.target.value
-    setUser((prev) => ({ ...prev, skype }))
+    setUserInfo((prev) => ({ ...prev, skype }))
   }
 
-  const handleOnNicknameChange = (e) => {
-    const nickname = e.target.value
-    setUser((prev) => ({ ...prev, nickname }))
+  const handleOnUsernameChange = (e) => {
+    const username = e.target.value
+    setUserInfo((prev) => ({ ...prev, username }))
   }
 
   const handleOnDiscordChange = (e) => {
     const discord = e.target.value
-    setUser((prev) => ({ ...prev, discord }))
+    setUserInfo((prev) => ({ ...prev, discord }))
   }
 
-  const handleOnSave = (e) => {
+  const handleOnSave = async (e) => {
     e.preventDefault()
-
-    console.log(user)
+    await updateUser(userInfo)
   }
 
-  const handleOnLogout = (e) => {
-    e.preventDefault()
-
-    console.log('tchau')
+  const handleOnUpload = async (e) => {
+    const imgUrl = await uploadImage()
+    setUserInfo((prev) => ({ ...prev, imgUrl }))
   }
   return (
     <SafeAreaView>
-      <ImageUpload imgSrc={user.imgUrl}></ImageUpload>
+      <ImageUpload
+        handleOnUpload={handleOnUpload}
+        imgSrc={userInfo.imgUrl}
+      ></ImageUpload>
       <FormTitle>Informações pessoais</FormTitle>
       <Input
-        type="Nickname"
-        placeholder="Nickname"
-        handleOnChange={handleOnNicknameChange}
-        value={user.nickname}
+        placeholder="Username"
+        handleOnChange={handleOnUsernameChange}
+        value={userInfo.username}
       />
       <Input
+        disabled
         placeholder="E-mail"
         handleOnChange={handleOnEmailChange}
-        value={user.email}
+        value={userInfo.email}
       />
       <Input
         placeholder="Discord"
         handleOnChange={handleOnDiscordChange}
-        value={user.discord}
+        value={userInfo.discord}
       />
       <Input
         placeholder="Skype"
         handleOnChange={handleOnSkypeChange}
-        value={user.skype}
+        value={userInfo.skype}
       />
       <Button primary handleOnPress={handleOnSave}>
         Salvar alterações
       </Button>
-      <Button handleOnPress={handleOnLogout}>Logout</Button>
+      <Button handleOnPress={signOut}>Logout</Button>
     </SafeAreaView>
   )
 }

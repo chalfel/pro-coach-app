@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { AsyncStorage } from 'react-native'
 
 import { Input, Button, FormTitle } from '../../components'
+import { AuthContext } from '../../contexts'
 import { SafeAreaView } from './styles'
 
-const Login = () => {
+const Login = ({ navigation }) => {
+  const { signIn } = useContext(AuthContext)
   const [user, setUser] = useState({
     email: '',
     password: ''
@@ -16,14 +19,13 @@ const Login = () => {
 
   const handleOnPasswordChange = (e) => {
     const password = e.target.value
-    console.log(password)
     setUser((prev) => ({ ...prev, password }))
   }
 
-  const handleOnLogin = (e) => {
+  const handleOnLogin = async (e) => {
     e.preventDefault()
-
-    console.log(user)
+    const { token } = await signIn(user)
+    await AsyncStorage.setItem('token', token)
   }
   return (
     <SafeAreaView>

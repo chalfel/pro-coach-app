@@ -11,7 +11,7 @@ const ImageUpload = ({ imgSrc, handleOnUpload }) => {
     <Container onClick={handleOnUpload}>
       <ProfileImage imgSrc={imgSrc}>
         <IconContainer>
-          <Icon name="camera" size="20px" />
+          <Icon name="camera" size={20} />
         </IconContainer>
       </ProfileImage>
     </Container>

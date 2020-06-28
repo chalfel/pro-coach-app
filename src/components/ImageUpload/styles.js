@@ -7,7 +7,7 @@ export const Container = styled.View`
   width: auto;
 `
 
-export const IconContainer = styled.View`
+export const IconContainer = styled.TouchableOpacity`
   position: absolute;
   display: flex;
   justify-content: center;

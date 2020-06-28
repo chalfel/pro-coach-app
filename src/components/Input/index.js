@@ -4,18 +4,20 @@ import { Container, TextInput } from './styles'
 
 const Input = ({
   handleOnChange,
-  handleOnSubmit,
+  handleOnSubmit = () => {},
   value,
   type,
   placeholder,
   width,
+  disabled,
   height,
   returnKeyType
 }) => {
   return (
     <Container>
       <TextInput
-        onChangeText={handleOnChange}
+        disabled={disabled}
+        onChange={handleOnChange}
         onSubmitEditing={({ nativeEvent }) => handleOnSubmit(nativeEvent.text)}
         placeholder={placeholder}
         placeholderTextColor="#aaa"
