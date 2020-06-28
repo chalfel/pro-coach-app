@@ -9,6 +9,7 @@ import MyAccount from './MyAccount'
 import Register from './Register'
 import RegisterSuccess from './RegisterSuccess'
 import ServiceSearchResults from './ServiceSearchResults'
+import Welcome from './Welcome'
 
 export {
   Home,
@@ -21,5 +22,6 @@ export {
   Login,
   Register,
   RegisterSuccess,
-  MyAccount
+  MyAccount,
+  Welcome
 }

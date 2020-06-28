@@ -10,11 +10,12 @@ import { SafeAreaView, Container } from './styles'
 
 import {
   Login,
+  MyAccount,
   Register,
   RegisterSuccess,
   CoachRegister,
   Info,
-  MyAccount
+  Welcome
 } from '..'
 
 const Stack = createStackNavigator()
@@ -45,6 +46,10 @@ const AccountStack = () => {
             component={Account}
             options={noNavHeader}
           />
+          <Stack.Screen 
+            name="Welcome" 
+            component={Welcome} 
+          options={noNavHeader} />
           <Stack.Screen
             name="CoachRegister"
             component={CoachRegister}
