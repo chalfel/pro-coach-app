@@ -3,11 +3,8 @@ import React, { useContext } from 'react'
 import { Feather as Icon } from '@expo/vector-icons'
 import { createStackNavigator } from '@react-navigation/stack'
 
-import { AuthContext } from '../../contexts'
-import { Header, Button } from '../../components'
-import { defaultNavHeader, noNavHeader } from '../../configs/components'
-import { SafeAreaView, Container } from './styles'
-
+import { defaultNavHeader, noNavHeader } from '../configs/components'
+import { AuthContext } from '../contexts'
 import {
   Login,
   MyAccount,
@@ -16,7 +13,7 @@ import {
   CoachRegister,
   Info,
   Welcome
-} from '..'
+} from '../screens'
 
 const Stack = createStackNavigator()
 
@@ -42,14 +39,10 @@ const AccountStack = () => {
       ) : (
         <>
           <Stack.Screen
-            name="Account"
-            component={Account}
+            name="Welcome"
+            component={Welcome}
             options={noNavHeader}
           />
-          <Stack.Screen 
-            name="Welcome" 
-            component={Welcome} 
-          options={noNavHeader} />
           <Stack.Screen
             name="CoachRegister"
             component={CoachRegister}
@@ -78,25 +71,6 @@ const AccountStack = () => {
         </>
       )}
     </Stack.Navigator>
-  )
-}
-
-const Account = ({ navigation }) => {
-  return (
-    <SafeAreaView>
-      <Header></Header>
-      <Container>
-        <Button handleOnPress={() => navigation.navigate('Register')} primary>
-          Cadastrar
-        </Button>
-        <Button handleOnPress={() => navigation.navigate('CoachRegister')}>
-          Quero ser coach
-        </Button>
-        <Button handleOnPress={() => navigation.navigate('Login')}>
-          Entrar
-        </Button>
-      </Container>
-    </SafeAreaView>
   )
 }
 

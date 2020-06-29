@@ -13,11 +13,15 @@ const Input = ({
   height,
   returnKeyType
 }) => {
+  const handleInputText = (e) => {
+    const value = e.nativeEvent.text
+    handleOnChange(value)
+  }
   return (
     <Container>
       <TextInput
         disabled={disabled}
-        onChange={handleOnChange}
+        onChange={handleInputText}
         onSubmitEditing={({ nativeEvent }) => handleOnSubmit(nativeEvent.text)}
         placeholder={placeholder}
         placeholderTextColor="#aaa"

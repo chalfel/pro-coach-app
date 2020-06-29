@@ -7,5 +7,7 @@ export const dataURLtoBlob = (dataurl) => {
   while (n--) {
     u8arr[n] = bstr.charCodeAt(n)
   }
+  console.log('test')
+  console.log(u8arr)
   return new Blob([u8arr], { type: mime })
 }

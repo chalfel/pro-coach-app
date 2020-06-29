@@ -1,4 +1,3 @@
-import Account from './Account'
 import Checkout from './Checkout'
 import CoachRegister from './CoachRegister'
 import CoachService from './CoachService'
@@ -13,7 +12,6 @@ import Welcome from './Welcome'
 
 export {
   Home,
-  Account,
   Checkout,
   ServiceSearchResults,
   CoachService,
