@@ -8,7 +8,7 @@ import { SafeAreaView } from './styles'
 const MyAccount = () => {
   const { signed, user, signOut, updateUser } = useContext(AuthContext)
   const [userInfo, setUserInfo] = useState({
-    imgUrl: ' ',
+    imgUrl: '',
     name: '',
     username: '',
     skype: '',
@@ -22,23 +22,19 @@ const MyAccount = () => {
     }
   }, [user])
 
-  const handleOnEmailChange = (e) => {
-    const email = e.target.value
+  const handleOnEmailChange = (email) => {
     setUserInfo((prev) => ({ ...prev, email }))
   }
 
-  const handleOnSkypeChange = (e) => {
-    const skype = e.target.value
+  const handleOnSkypeChange = (skype) => {
     setUserInfo((prev) => ({ ...prev, skype }))
   }
 
-  const handleOnUsernameChange = (e) => {
-    const username = e.target.value
+  const handleOnUsernameChange = (username) => {
     setUserInfo((prev) => ({ ...prev, username }))
   }
 
-  const handleOnDiscordChange = (e) => {
-    const discord = e.target.value
+  const handleOnDiscordChange = (discord) => {
     setUserInfo((prev) => ({ ...prev, discord }))
   }
 
@@ -49,6 +45,7 @@ const MyAccount = () => {
 
   const handleOnUpload = async (e) => {
     const imgUrl = await uploadImage()
+    await updateUser({ imgUrl })
     setUserInfo((prev) => ({ ...prev, imgUrl }))
   }
   return (

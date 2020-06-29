@@ -15,7 +15,7 @@ export const IconContainer = styled.TouchableOpacity`
   bottom: 0;
   right: -5px;
   background-color: #f3f3f3;
-  border-radius: 50%;
+  border-radius: 18px;
   width: 35px;
   height: 35px;
 `

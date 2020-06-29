@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import { Platform } from 'react-native'
 
-import axios from 'axios'
-
 import { FormTitle, Input, Button } from '../../components'
-import { apiBaseUrl, coachesEndpoint } from '../../configs/connection'
+import { api, coachesEndpoint } from '../../configs/connection'
 import { KeyboardAvoidingView } from './styles'
 
 const CoachService = ({ navigation }) => {
@@ -15,8 +13,8 @@ const CoachService = ({ navigation }) => {
       email: value
     }
 
-    axios
-      .post(`${apiBaseUrl}/${coachesEndpoint}`, payload)
+    api
+      .post(`/${coachesEndpoint}`, payload)
       .then(() => {
         navigation.navigate('CoachRegisterSuccess')
       })
