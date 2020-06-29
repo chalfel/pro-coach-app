@@ -24,7 +24,8 @@ const CoachService = ({ navigation }) => {
   }
 
   const handleOnChange = ({ target }) => {
-    setValue(target.value)
+    const email = target.value
+    setValue(email)
   }
 
   return (

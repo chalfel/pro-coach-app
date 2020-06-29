@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import { Feather as Icon } from '@expo/vector-icons'
 import { createStackNavigator } from '@react-navigation/stack'
 
-import { Button } from '../../components'
+import { AuthContext } from '../../contexts'
+import { Header, Button } from '../../components'
 import { defaultNavHeader, noNavHeader } from '../../configs/components'
 import { SafeAreaView, Container } from './styles'
 
@@ -19,7 +20,7 @@ import {
 
 const Stack = createStackNavigator()
 
-const CoachRegisterSucess = () => {
+const CoachRegisterSuccess = () => {
   return (
     <Info
       icon={<Icon name="check-circle" size={38} color="#00ca14" />}
@@ -29,42 +30,53 @@ const CoachRegisterSucess = () => {
   )
 }
 const AccountStack = () => {
-  const user = { nickname: 'josezin' }
-
+  const { signed, user } = useContext(AuthContext)
   return (
     <Stack.Navigator screenOptions={defaultNavHeader}>
-      <Stack.Screen name="Account" component={Account} options={noNavHeader} />
-      <Stack.Screen name="Welcome" component={Welcome} options={noNavHeader} />
-      <Stack.Screen
-        name="CoachRegister"
-        component={CoachRegister}
-        options={{ title: 'Cadastrar' }}
-      />
-      <Stack.Screen
-        name="CoachRegisterSuccess"
-        component={CoachRegisterSucess}
-        options={{ title: 'Cadastrar' }}
-      />
-      <Stack.Screen
-        name="Login"
-        component={Login}
-        options={{ title: 'Entrar' }}
-      />
-      <Stack.Screen
-        name="MyAccount"
-        component={MyAccount}
-        options={{ title: user.nickname }}
-      />
-      <Stack.Screen
-        name="Register"
-        component={Register}
-        options={{ title: 'Cadastrar' }}
-      />
-      <Stack.Screen
-        name="RegisterSuccess"
-        component={RegisterSuccess}
-        options={{ title: 'Cadastrar' }}
-      />
+      {signed ? (
+        <Stack.Screen
+          name="Account"
+          component={MyAccount}
+          options={{ title: user.username }}
+        />
+      ) : (
+        <>
+          <Stack.Screen
+            name="Account"
+            component={Account}
+            options={noNavHeader}
+          />
+          <Stack.Screen 
+            name="Welcome" 
+            component={Welcome} 
+          options={noNavHeader} />
+          <Stack.Screen
+            name="CoachRegister"
+            component={CoachRegister}
+            options={{ title: 'Cadastrar' }}
+          />
+          <Stack.Screen
+            name="CoachRegisterSuccess"
+            component={CoachRegisterSuccess}
+            options={{ title: 'Cadastrar' }}
+          />
+          <Stack.Screen
+            name="Login"
+            component={Login}
+            options={{ title: 'Entrar' }}
+          />
+          <Stack.Screen
+            name="Register"
+            component={Register}
+            options={{ title: 'Cadastrar' }}
+          />
+          <Stack.Screen
+            name="RegisterSuccess"
+            component={RegisterSuccess}
+            options={{ title: 'Cadastrar' }}
+          />
+        </>
+      )}
     </Stack.Navigator>
   )
 }
@@ -72,16 +84,16 @@ const AccountStack = () => {
 const Account = ({ navigation }) => {
   return (
     <SafeAreaView>
+      <Header></Header>
       <Container>
         <Button handleOnPress={() => navigation.navigate('Register')} primary>
           Cadastrar
         </Button>
-        <Button>Quero ser coach</Button>
+        <Button handleOnPress={() => navigation.navigate('CoachRegister')}>
+          Quero ser coach
+        </Button>
         <Button handleOnPress={() => navigation.navigate('Login')}>
           Entrar
-        </Button>
-        <Button handleOnPress={() => navigation.navigate('MyAccount')}>
-          Minha Conta
         </Button>
       </Container>
     </SafeAreaView>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View } from 'react-native'
+import { View, AsyncStorage } from 'react-native'
 
 import { Feather as Icon } from '@expo/vector-icons'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -7,7 +7,7 @@ import axios from 'axios'
 
 import { Header, Input, Card } from '../../components'
 import { defaultNavHeader, noNavHeader } from '../../configs/components'
-import { apiBaseUrl, coachServicesEndpoint } from '../../configs/connection'
+import { api, coachServicesEndpoint } from '../../configs/connection'
 
 import { ServiceSearchResults, CoachService } from '..'
 
@@ -41,19 +41,24 @@ const Home = ({ navigation }) => {
   const autoCorrectSearch = false
   const returnKeyType = 'search'
 
+  const getToken = () => {
+    AsyncStorage.getItem('token').then((token) => {})
+  }
+
   useEffect(() => {
+    getToken()
     const topServicesParams = {
       params: {}
     }
     const recentServicesParams = {
       params: {}
     }
-    const topServicesReq = axios.get(
-      `${apiBaseUrl}/${coachServicesEndpoint}`,
+    const topServicesReq = api.get(
+      `/${coachServicesEndpoint}`,
       topServicesParams
     )
-    const recentServicesReq = axios.get(
-      `${apiBaseUrl}/${coachServicesEndpoint}`,
+    const recentServicesReq = api.get(
+      `/${coachServicesEndpoint}`,
       recentServicesParams
     )
 
@@ -61,8 +66,8 @@ const Home = ({ navigation }) => {
       .all([topServicesReq, recentServicesReq])
       .then(
         axios.spread((topServicesRes, recentServicesRes) => {
-          setTopServices(topServicesRes)
-          setRecentServices(recentServicesRes)
+          setTopServices(topServicesRes.data)
+          setRecentServices(recentServicesRes.data)
         })
       )
       .catch((e) => console.log(e))

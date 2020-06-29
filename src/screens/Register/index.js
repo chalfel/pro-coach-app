@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 
 import { ImageUpload, Input, Button, FormTitle } from '../../components'
-import { SafeAreaView } from './styles'
+import { api, userEndpoint } from '../../configs/connection'
+import { uploadImage } from '../../utils/uploadImages'
+import { SafeAreaView, TopContainer } from './styles'
 
 const Register = ({ navigation }) => {
   const [user, setUser] = useState({
     imgUrl: '',
-    name: '',
-    nickname: '',
+    username: '',
     email: '',
     password: '',
     confirmPassword: ''
@@ -17,9 +18,9 @@ const Register = ({ navigation }) => {
     const email = e.target.value
     setUser((prev) => ({ ...prev, email }))
   }
-  const handleOnNicknameChange = (e) => {
-    const nickname = e.target.value
-    setUser((prev) => ({ ...prev, nickname }))
+  const handleOnUsernameChange = (e) => {
+    const username = e.target.value
+    setUser((prev) => ({ ...prev, username }))
   }
 
   const handleOnPasswordChange = (e) => {
@@ -31,16 +32,44 @@ const Register = ({ navigation }) => {
     setUser((prev) => ({ ...prev, confirmPassword }))
   }
 
+  const validateForm = () => {
+    if (
+      !user.email ||
+      !user.username ||
+      !user.password ||
+      !user.confirmPassword
+    ) {
+      return false
+    }
+    return true
+  }
   const handleOnRegister = (e) => {
     e.preventDefault()
-    navigation.navigate('RegisterSuccess')
-    console.log(user)
+    const isValid = validateForm()
+    if (!isValid) {
+      return
+    }
+    if (user.confirmPassword !== user.password) {
+      return false
+    }
+    api
+      .post(`/${userEndpoint}`, user)
+      .then(() => {
+        navigation.navigate('RegisterSuccess', { username: user.username })
+      })
+      .catch((e) => console.log(e))
   }
 
+  const handleOnUpload = async (e) => {
+    const imgUrl = await uploadImage()
+    setUser((prev) => ({ ...prev, imgUrl }))
+  }
   return (
     <SafeAreaView>
-      <FormTitle>Vamos começar</FormTitle>
-      <ImageUpload imgSrc={user.imgUrl} />
+      <TopContainer>
+        <FormTitle>Vamos começar</FormTitle>
+        <ImageUpload handleOnUpload={handleOnUpload} imgSrc={user.imgUrl} />
+      </TopContainer>
       <Input
         placeholder="E-mail"
         handleOnChange={handleOnEmailChange}
@@ -48,17 +77,17 @@ const Register = ({ navigation }) => {
       />
       <Input
         placeholder="Nome de usuário"
-        handleOnChange={handleOnNicknameChange}
-        value={user.nickname}
+        handleOnChange={handleOnUsernameChange}
+        value={user.username}
       />
       <Input
-        placeholder="Discord"
+        placeholder="Senha"
         type="password"
         handleOnChange={handleOnPasswordChange}
         value={user.password}
       />
       <Input
-        placeholder="Skype"
+        placeholder="Confirme sua senha"
         handleOnChange={handleOnConfirmPasswordChange}
         type="password"
         value={user.confirmPassword}
