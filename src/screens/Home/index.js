@@ -14,7 +14,7 @@ const Home = ({ navigation }) => {
   const [inputValue, setInputValue] = useState('')
 
   const placeholder = 'Encontre jogos e coaches'
-  const searchIcon = <Icon name="search" size={24} color="#aaa" />
+  const iconName = 'search'
   const autoCorrectSearch = false
   const returnKeyType = 'search'
 
@@ -57,7 +57,7 @@ const Home = ({ navigation }) => {
       <Header />
       <Input
         placeholder={placeholder}
-        icon={searchIcon}
+        iconName={iconName}
         value={inputValue}
         autoCorrect={autoCorrectSearch}
         handleOnChange={(text) => setInputValue(text)}
@@ -67,7 +67,7 @@ const Home = ({ navigation }) => {
             navigation.navigate('ServiceSearchResults', {
               text,
               placeholder,
-              searchIcon,
+              iconName,
               autoCorrectSearch,
               returnKeyType
             })
