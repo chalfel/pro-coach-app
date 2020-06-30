@@ -6,7 +6,7 @@ import { Container, Image, Text } from './styles'
 
 const GameCard = ({ imgUrl, gameName, handleOnClick }) => {
   return (
-    <Container onClick={handleOnClick}>
+    <Container onPress={handleOnClick}>
       <Image source={imgUrl} />
       <LinearGradient
         colors={['rgba(0,0,0,0.2)', 'rgba(0,0,0,0.5)', 'rgba(0,0,0,0.8)']}

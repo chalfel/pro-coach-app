@@ -34,7 +34,6 @@ export const AuthProvider = ({ children }) => {
   }
   const updateUser = async (userInfo) => {
     const newUser = await updateUserInfo(userInfo, token)
-    console.log(newUser)
     setUser((prev) => ({ ...prev, ...newUser }))
   }
   return (

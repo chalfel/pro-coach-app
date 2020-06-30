@@ -1,27 +1,17 @@
-import Constants from 'expo-constants'
 import * as ImagePicker from 'expo-image-picker'
 import * as Permissions from 'expo-permissions'
 
 import * as file from '../services/file'
 
 const getPermissionAsync = async () => {
-  if (Constants.platform.ios) {
-    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL)
-    if (status !== 'granted') {
-      return false
-    }
-  } else {
-    const { status } = await ImagePicker.getCameraRollPermissionsAsync(
-      Permissions.CAMERA_ROLL
-    )
-    if (status !== 'granted') {
-      return false
-    }
+  const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL)
+  if (status !== 'granted') {
+    return false
   }
   return true
 }
 
-export const uploadImage = async (token) => {
+export const uploadImage = async () => {
   const hasPermission = await getPermissionAsync()
   if (hasPermission) {
     try {
@@ -32,7 +22,7 @@ export const uploadImage = async (token) => {
         quality: 1
       })
       if (!result.cancelled) {
-        const { url } = await file.uploadImage(result.uri)
+        const { url } = await file.uploadImage(result)
         return url
       }
     } catch (e) {

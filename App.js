@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 
 import { AuthProvider } from './src/contexts'
-import { Home, Account, Checkout } from './src/screens'
+import { HomeStack, AccountStack } from './src/routes'
 
 const Tab = createBottomTabNavigator()
 const App = () => {
@@ -49,9 +49,8 @@ const App = () => {
             showLabel: false
           }}
         >
-          <Tab.Screen name="Home" component={Home} />
-          <Tab.Screen name="Account" component={Account} />
-          <Tab.Screen name="Checkout" component={Checkout} />
+          <Tab.Screen name="Home" component={HomeStack} />
+          <Tab.Screen name="Account" component={AccountStack} />
         </Tab.Navigator>
       </AuthProvider>
     </NavigationContainer>

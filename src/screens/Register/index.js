@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { ImageUpload, Input, Button, FormTitle } from '../../components'
 import { api, userEndpoint } from '../../configs/connection'
 import { uploadImage } from '../../utils/uploadImages'
-import { SafeAreaView, TopContainer } from './styles'
+import { ScrollView, SafeAreaView, TopContainer } from './styles'
 
 const Register = ({ navigation }) => {
   const [user, setUser] = useState({
@@ -14,30 +14,26 @@ const Register = ({ navigation }) => {
     confirmPassword: ''
   })
 
-  const handleOnEmailChange = (e) => {
-    const email = e.target.value
+  const handleOnEmailChange = (email) => {
     setUser((prev) => ({ ...prev, email }))
   }
-  const handleOnUsernameChange = (e) => {
-    const username = e.target.value
+  const handleOnUsernameChange = (username) => {
     setUser((prev) => ({ ...prev, username }))
   }
 
-  const handleOnPasswordChange = (e) => {
-    const password = e.target.value
+  const handleOnPasswordChange = (password) => {
     setUser((prev) => ({ ...prev, password }))
   }
-  const handleOnConfirmPasswordChange = (e) => {
-    const confirmPassword = e.target.value
+  const handleOnConfirmPasswordChange = (confirmPassword) => {
     setUser((prev) => ({ ...prev, confirmPassword }))
   }
 
   const validateForm = () => {
     if (
-      !user.email ||
-      !user.username ||
-      !user.password ||
-      !user.confirmPassword
+      !user.email.length === 0 ||
+      !user.username.length === 0 ||
+      !user.password.length === 0 ||
+      !user.confirmPassword.length === 0
     ) {
       return false
     }
@@ -65,37 +61,39 @@ const Register = ({ navigation }) => {
     setUser((prev) => ({ ...prev, imgUrl }))
   }
   return (
-    <SafeAreaView>
-      <TopContainer>
-        <FormTitle>Vamos começar</FormTitle>
-        <ImageUpload handleOnUpload={handleOnUpload} imgSrc={user.imgUrl} />
-      </TopContainer>
-      <Input
-        placeholder="E-mail"
-        handleOnChange={handleOnEmailChange}
-        value={user.email}
-      />
-      <Input
-        placeholder="Nome de usuário"
-        handleOnChange={handleOnUsernameChange}
-        value={user.username}
-      />
-      <Input
-        placeholder="Senha"
-        type="password"
-        handleOnChange={handleOnPasswordChange}
-        value={user.password}
-      />
-      <Input
-        placeholder="Confirme sua senha"
-        handleOnChange={handleOnConfirmPasswordChange}
-        type="password"
-        value={user.confirmPassword}
-      />
-      <Button primary handleOnPress={handleOnRegister}>
-        Cadastrar
-      </Button>
-    </SafeAreaView>
+    <ScrollView>
+      <SafeAreaView>
+        <TopContainer>
+          <FormTitle>Vamos começar</FormTitle>
+          <ImageUpload handleOnUpload={handleOnUpload} imgSrc={user.imgUrl} />
+        </TopContainer>
+        <Input
+          placeholder="E-mail"
+          handleOnChange={handleOnEmailChange}
+          value={user.email}
+        />
+        <Input
+          placeholder="Nome de usuário"
+          handleOnChange={handleOnUsernameChange}
+          value={user.username}
+        />
+        <Input
+          placeholder="Senha"
+          type="password"
+          handleOnChange={handleOnPasswordChange}
+          value={user.password}
+        />
+        <Input
+          placeholder="Confirme sua senha"
+          handleOnChange={handleOnConfirmPasswordChange}
+          type="password"
+          value={user.confirmPassword}
+        />
+        <Button primary handleOnPress={handleOnRegister}>
+          Cadastrar
+        </Button>
+      </SafeAreaView>
+    </ScrollView>
   )
 }
 export default Register

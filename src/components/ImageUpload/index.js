@@ -8,9 +8,9 @@ import { Container, IconContainer } from './styles'
 
 const ImageUpload = ({ imgSrc, handleOnUpload }) => {
   return (
-    <Container onClick={handleOnUpload}>
-      <ProfileImage imgSrc={imgSrc}>
-        <IconContainer>
+    <Container>
+      <ProfileImage imgSrc={{ uri: imgSrc }}>
+        <IconContainer onClick={handleOnUpload} onPress={handleOnUpload}>
           <Icon name="camera" size={20} />
         </IconContainer>
       </ProfileImage>

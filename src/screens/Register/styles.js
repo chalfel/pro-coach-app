@@ -1,8 +1,12 @@
 import styled from 'styled-components/native'
 
+export const ScrollView = styled.ScrollView`
+  height: 100%;
+  background-color: #fff;
+`
+
 export const SafeAreaView = styled.SafeAreaView`
   flex: 1;
-  background-color: #fff;
   height: 100%;
   display: flex;
   flex-direction: column;

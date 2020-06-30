@@ -2,34 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { View, AsyncStorage } from 'react-native'
 
 import { Feather as Icon } from '@expo/vector-icons'
-import { createStackNavigator } from '@react-navigation/stack'
 import axios from 'axios'
 
 import { Header, Input, Card } from '../../components'
-import { defaultNavHeader, noNavHeader } from '../../configs/components'
 import { api, coachServicesEndpoint } from '../../configs/connection'
-
-import { ServiceSearchResults, CoachService } from '..'
-
 import { Container, Title, ScrollView } from './styles'
-
-const Stack = createStackNavigator()
-
-const HomeStack = () => {
-  return (
-    <Stack.Navigator screenOptions={defaultNavHeader}>
-      <Stack.Screen name="Home" component={Home} options={noNavHeader} />
-      <Stack.Screen
-        name="ServiceSearchResults"
-        component={ServiceSearchResults}
-        options={{ title: 'Pesquisa' }}
-      />
-      <Stack.Screen name="CoachService" component={CoachService} />
-      {/* <Stack.Screen name="Checkout" component={Checkout} /> */}
-      {/* <Stack.Screen name="CheckoutSuccess" component={CheckoutSuccess} /> */}
-    </Stack.Navigator>
-  )
-}
 
 const Home = ({ navigation }) => {
   const [topServices, setTopServices] = useState([])
@@ -66,11 +43,13 @@ const Home = ({ navigation }) => {
       .all([topServicesReq, recentServicesReq])
       .then(
         axios.spread((topServicesRes, recentServicesRes) => {
+          console.log(topServicesRes.data)
           setTopServices(topServicesRes.data)
           setRecentServices(recentServicesRes.data)
         })
       )
       .catch((e) => console.log(e))
+    return () => {}
   }, [])
 
   return (
@@ -111,8 +90,8 @@ const Home = ({ navigation }) => {
                 handleOnPress={() =>
                   navigation.navigate('CoachService', service)
                 }
-                coachName={user}
-                gameTitle={game}
+                coachName={user.username}
+                gameTitle={game.name}
                 serviceTitle={name}
                 serviceDetails={description}
                 score={rating}
@@ -136,8 +115,8 @@ const Home = ({ navigation }) => {
                 handleOnPress={() =>
                   navigation.navigate('CoachService', service)
                 }
-                coachName={user}
-                gameTitle={game}
+                coachName={user.username}
+                gameTitle={game.name}
                 serviceTitle={name}
                 serviceDetails={description}
                 score={rating}
@@ -150,4 +129,4 @@ const Home = ({ navigation }) => {
   )
 }
 
-export default HomeStack
+export default Home

@@ -12,13 +12,11 @@ const Login = ({ navigation }) => {
     password: ''
   })
 
-  const handleOnEmailChange = (e) => {
-    const email = e.target.value
+  const handleOnEmailChange = (email) => {
     setUser((prev) => ({ ...prev, email }))
   }
 
-  const handleOnPasswordChange = (e) => {
-    const password = e.target.value
+  const handleOnPasswordChange = (password) => {
     setUser((prev) => ({ ...prev, password }))
   }
 
