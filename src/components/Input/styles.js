@@ -1,3 +1,4 @@
+import { Feather as Icon } from '@expo/vector-icons'
 import styled from 'styled-components/native'
 
 export const Container = styled.View`
@@ -15,5 +16,9 @@ export const TextInput = styled.TextInput`
   height: ${(props) => props.height || '48px'};
   margin: 0;
   font-size: 18px;
-  text-align: center;
+  padding: 16px;
+`
+
+export const StyledIcon = styled(Icon)`
+  margin-right: 16px;
 `

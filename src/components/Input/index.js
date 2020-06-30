@@ -1,10 +1,11 @@
 import React from 'react'
 
-import { Container, TextInput } from './styles'
+import { Container, TextInput, StyledIcon } from './styles'
 
 const Input = ({
   handleOnChange,
   handleOnSubmit = () => {},
+  iconName,
   value,
   type,
   placeholder,
@@ -31,6 +32,7 @@ const Input = ({
         secureTextEntry={type === 'password'}
         returnKeyType={returnKeyType}
       />
+      {iconName && <StyledIcon name={'search'} size={24} color="#bbb" />}
     </Container>
   )
 }
