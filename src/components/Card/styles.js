@@ -48,6 +48,7 @@ export const ServiceTitle = styled.Text`
 `
 
 export const ServiceDetails = styled.Text`
+  margin-top: 16px;
   font-style: italic;
   color: #a3a3a3;
 `
