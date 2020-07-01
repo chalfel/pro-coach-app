@@ -6,6 +6,7 @@ export const coachesEndpoint = 'coach'
 export const sessionEndpoint = 'session'
 export const userEndpoint = 'user'
 export const fileEndpoint = 'file'
+export const orderEndpoint = 'order'
 
 export const api = axios.create({
   baseURL: apiBaseUrl,

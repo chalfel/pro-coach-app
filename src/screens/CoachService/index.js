@@ -1,28 +1,46 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
-import {
-  ImageUpload,
-  Button,
-  Input,
-  FormSubtitle,
-  FormTitle
-} from '../../components'
+import { ProfileImage, Button, FormSubtitle, FormTitle } from '../../components'
+import { AuthContext } from '../../contexts'
+import { checkout } from '../../services/order'
 import { SafeAreaView } from './styles'
 
-const CoachService = ({ route }) => {
+const CoachService = ({ navigation, route }) => {
+  const { service } = route.params
+  const { user } = service
+  const { token, signed } = useContext(AuthContext)
+  const handleOnCheckout = async () => {
+    if (!signed) {
+      navigation.navigate('Login', {
+        redirect: {
+          screen: 'CoachService',
+
+          params: {
+            service
+          }
+        }
+      })
+      return
+    }
+    const newOrder = {
+      user: user._id,
+      proService: service._id,
+      price: service.price
+    }
+    const { uri } = await checkout(newOrder, token)
+    navigation.navigate('Checkout', { uri })
+  }
   return (
     <SafeAreaView>
-      <ImageUpload handleOnUpload imgSrc></ImageUpload>
-      <FormTitle>Informações pessoais</FormTitle>
+      <ProfileImage imgSrc={service.imgUrl || ''}></ProfileImage>
+      <FormTitle>{service.user.username || ''}</FormTitle>
       <FormSubtitle>Informações pessoais</FormSubtitle>
-      <Input placeholder="Username" handleOnChange value />
-      <Input disabled placeholder="E-mail" handleOnChange value />
-      <Input placeholder="Discord" handleOnChange value />
-      <Input placeholder="Skype" handleOnChange value />
-      <Button primary handleOnPress>
-        Salvar alterações
+      <FormSubtitle>Informações pessoais</FormSubtitle>
+      <FormSubtitle>Informações pessoais</FormSubtitle>
+      <FormSubtitle>Informações pessoais</FormSubtitle>
+      <Button primary handleOnPress={handleOnCheckout}>
+        Continuar por R$ {service.price}
       </Button>
-      <Button handleOnPress>Logout</Button>
     </SafeAreaView>
   )
 }

@@ -9,7 +9,7 @@ const INITIAL_STATE = {
     username: '',
     email: '',
     name: '',
-    imgUrl: '',
+    imgUrl: null,
     discord: '',
     skype: '',
     pro: false

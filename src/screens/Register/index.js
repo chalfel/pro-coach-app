@@ -7,7 +7,7 @@ import { ScrollView, SafeAreaView, TopContainer } from './styles'
 
 const Register = ({ navigation }) => {
   const [user, setUser] = useState({
-    imgUrl: '',
+    imgUrl: null,
     username: '',
     email: '',
     password: '',
@@ -28,23 +28,8 @@ const Register = ({ navigation }) => {
     setUser((prev) => ({ ...prev, confirmPassword }))
   }
 
-  const validateForm = () => {
-    if (
-      !user.email.length === 0 ||
-      !user.username.length === 0 ||
-      !user.password.length === 0 ||
-      !user.confirmPassword.length === 0
-    ) {
-      return false
-    }
-    return true
-  }
   const handleOnRegister = (e) => {
     e.preventDefault()
-    const isValid = validateForm()
-    if (!isValid) {
-      return
-    }
     if (user.confirmPassword !== user.password) {
       return false
     }
@@ -61,8 +46,8 @@ const Register = ({ navigation }) => {
     setUser((prev) => ({ ...prev, imgUrl }))
   }
   return (
-    <ScrollView>
-      <SafeAreaView>
+    <SafeAreaView behavior="height">
+      <ScrollView>
         <TopContainer>
           <FormTitle>Vamos começar</FormTitle>
           <ImageUpload handleOnUpload={handleOnUpload} imgSrc={user.imgUrl} />
@@ -92,8 +77,8 @@ const Register = ({ navigation }) => {
         <Button primary handleOnPress={handleOnRegister}>
           Cadastrar
         </Button>
-      </SafeAreaView>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   )
 }
 export default Register

@@ -8,7 +8,7 @@ import { SafeAreaView } from './styles'
 const MyAccount = () => {
   const { signed, user, signOut, updateUser } = useContext(AuthContext)
   const [userInfo, setUserInfo] = useState({
-    imgUrl: '',
+    imgUrl: null,
     name: '',
     username: '',
     skype: '',
