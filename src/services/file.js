@@ -1,5 +1,4 @@
 import { api, fileEndpoint } from '../configs/connection'
-// import { dataURLtoBlob } from '../utils/convertDataUrlToBlob'
 
 export const uploadImage = async (img) => {
   try {
@@ -21,8 +20,6 @@ export const uploadImage = async (img) => {
       return false
     }
   } catch (e) {
-    console.log('eae')
-    console.log(e)
     return e
   }
 }

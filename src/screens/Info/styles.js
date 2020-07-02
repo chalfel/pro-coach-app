@@ -10,11 +10,12 @@ export const Container = styled.SafeAreaView`
 
 export const Title = styled.Text`
   font-size: 24;
+  margin: 10px 0;
   text-align: center;
 `
 
 export const Description = styled.Text`
   font-size: 20;
-  color: #444;
+  color: #5b5b5b;
   text-align: center;
 `

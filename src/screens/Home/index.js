@@ -43,7 +43,6 @@ const Home = ({ navigation }) => {
       .all([topServicesReq, recentServicesReq])
       .then(
         axios.spread((topServicesRes, recentServicesRes) => {
-          console.log(topServicesRes.data)
           setTopServices(topServicesRes.data)
           setRecentServices(recentServicesRes.data)
         })
@@ -88,7 +87,7 @@ const Home = ({ navigation }) => {
               <Card
                 key={_id}
                 handleOnPress={() =>
-                  navigation.navigate('CoachService', service)
+                  navigation.navigate('CoachService', { service })
                 }
                 coachName={user.username}
                 gameTitle={game.name}
