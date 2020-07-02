@@ -1,14 +1,22 @@
 import React, { useContext } from 'react'
 
-import { ProfileImage, Button, FormSubtitle, FormTitle } from '../../components'
+import { ProfileImage, FormTitle, Button, Rating } from '../../components'
 import { AuthContext } from '../../contexts'
 import { checkout } from '../../services/order'
-import { SafeAreaView } from './styles'
+import {
+  SafeAreaView,
+  TopContainer,
+  CoachName,
+  PlanInfo,
+  PlanDescription,
+  DescriptionContainer
+} from './styles'
 
 const CoachService = ({ navigation, route }) => {
   const { service } = route.params
   const { user } = service
   const { token, signed } = useContext(AuthContext)
+  console.log(service)
   const handleOnCheckout = async () => {
     if (!signed) {
       navigation.navigate('Login', {
@@ -32,12 +40,17 @@ const CoachService = ({ navigation, route }) => {
   }
   return (
     <SafeAreaView>
-      <ProfileImage imgSrc={service.imgUrl || ''}></ProfileImage>
-      <FormTitle>{service.user.username || ''}</FormTitle>
-      <FormSubtitle>Informações pessoais</FormSubtitle>
-      <FormSubtitle>Informações pessoais</FormSubtitle>
-      <FormSubtitle>Informações pessoais</FormSubtitle>
-      <FormSubtitle>Informações pessoais</FormSubtitle>
+      <TopContainer>
+        <ProfileImage imgSrc={service.imgUrl}></ProfileImage>
+        <Rating score={service.rating || 0}></Rating>
+        <CoachName>{service.user.username || ''}</CoachName>
+      </TopContainer>
+      <PlanInfo>
+        <FormTitle>{service.name}</FormTitle>
+        <DescriptionContainer>
+          <PlanDescription>{service.description}</PlanDescription>
+        </DescriptionContainer>
+      </PlanInfo>
       <Button primary handleOnPress={handleOnCheckout}>
         Continuar por R$ {service.price}
       </Button>
