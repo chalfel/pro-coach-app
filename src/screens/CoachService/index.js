@@ -16,7 +16,7 @@ const CoachService = ({ navigation, route }) => {
   const { service } = route.params
   const { user } = service
   const { token, signed } = useContext(AuthContext)
-  console.log(service)
+
   const handleOnCheckout = async () => {
     if (!signed) {
       navigation.navigate('Login', {
