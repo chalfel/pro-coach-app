@@ -29,10 +29,8 @@ const Home = ({ navigation }) => {
     const recentServicesParams = {
       params: { sort: 'desc(created_at)', limit: 10 }
     }
-    getCoachService(topServicesParams).then((data) => setTopServices(data))
-    getCoachService(recentServicesParams).then((data) =>
-      setRecentServices(data)
-    )
+    getCoachService(topServicesParams).then(setTopServices)
+    getCoachService(recentServicesParams).then(setRecentServices)
 
     return () => {}
   }, [])
