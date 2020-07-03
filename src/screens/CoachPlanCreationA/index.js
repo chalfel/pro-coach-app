@@ -6,9 +6,7 @@ import { api, gamesEndpoint } from '../../configs/connection'
 import { Container } from './styles'
 
 const CoachPlanCreationA = ({ navigation }) => {
-  const [availableGames, setAvailableGames] = useState([
-    { _id: 0, name: 'FIFA20' }
-  ])
+  const [availableGames, setAvailableGames] = useState([])
 
   useEffect(() => {
     api
