@@ -9,7 +9,10 @@ import {
   CoachService,
   CoachPlanCreationA,
   CoachPlanCreationB,
-  CoachPlanCreationSuccess
+  CoachPlanCreationSuccess,
+  Checkout,
+  CheckoutSuccess,
+  Login
 } from '../screens'
 
 const Stack = createStackNavigator()
@@ -39,8 +42,22 @@ const HomeStack = () => {
         component={CoachPlanCreationSuccess}
         options={{ title: 'Novo plano' }}
       />
-      {/* <Stack.Screen name="Checkout" component={Checkout} /> */}
-      {/* <Stack.Screen name="CheckoutSuccess" component={CheckoutSuccess} /> */}
+      <Stack.Screen
+        name="CoachService"
+        component={CoachService}
+        options={{ title: 'Coach' }}
+      />
+      <Stack.Screen name="Checkout" component={Checkout} />
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{ title: 'Entrar' }}
+      />
+      <Stack.Screen
+        name="CheckoutSuccess"
+        component={CheckoutSuccess}
+        options={{ title: 'Checkout' }}
+      />
     </Stack.Navigator>
   )
 }

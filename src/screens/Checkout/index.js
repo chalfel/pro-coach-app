@@ -1,23 +1,22 @@
 import React from 'react'
+import { WebView } from 'react-native-webview'
 
-import { Button, Header, Input, Container } from '../../components'
-import { CardInfo, Text } from './styles'
-
-const Checkout = () => {
+const Checkout = ({ navigation, route }) => {
+  const { uri } = route.params
+  const handleStateChange = (e) => {
+    const checkoutStatus = {
+      success: () => navigation.navigate('CheckoutSuccess'),
+      failed: () => navigation.navigate('CheckoutFailure'),
+      default: () => {}
+    }
+    const checkoutFunction = checkoutStatus[e.title] || checkoutStatus.default
+    checkoutFunction()
+  }
   return (
-    <Container>
-      <Header />
-      <Text> Digite suas informações: </Text>
-      <Input placeholder="Nome Completo" type="text"></Input>
-      <Input placeholder="CPF" type="text"></Input>
-      <Input placeholder="Número do Cartão" type="text"></Input>
-      <CardInfo>
-        <Input placeholder="CVV" type="text" width="30%"></Input>
-        <Input placeholder="Parcelas" type="text" width="30%"></Input>
-        <Input placeholder="Validade" width="30%" type="text"></Input>
-      </CardInfo>
-      <Button text="Finalizar Compra" buttonColor="#9C0000"></Button>
-    </Container>
+    <WebView
+      onNavigationStateChange={handleStateChange}
+      source={{ uri }}
+    ></WebView>
   )
 }
 export default Checkout

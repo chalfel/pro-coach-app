@@ -9,11 +9,3 @@ export const SafeAreaView = styled.SafeAreaView`
   justify-content: center;
   text-align: center;
 `
-
-export const LogoContainer = styled.View`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-`

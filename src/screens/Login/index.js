@@ -1,17 +1,24 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { AsyncStorage } from 'react-native'
 
 import { Input, Button, FormTitle } from '../../components'
 import { AuthContext } from '../../contexts'
 import { SafeAreaView } from './styles'
 
-const Login = ({ navigation }) => {
+const Login = ({ navigation, route }) => {
   const { signIn } = useContext(AuthContext)
+  const [redirectInfo, setRedirectInfo] = useState()
   const [user, setUser] = useState({
     email: '',
     password: ''
   })
 
+  useEffect(() => {
+    if (route.params) {
+      const { redirect } = route.params
+      setRedirectInfo(redirect)
+    }
+  }, [])
   const handleOnEmailChange = (email) => {
     setUser((prev) => ({ ...prev, email }))
   }
@@ -24,6 +31,9 @@ const Login = ({ navigation }) => {
     e.preventDefault()
     const { token } = await signIn(user)
     await AsyncStorage.setItem('token', token)
+    if (redirectInfo) {
+      navigation.navigate(redirectInfo.screen, redirectInfo.params)
+    }
   }
   return (
     <SafeAreaView>

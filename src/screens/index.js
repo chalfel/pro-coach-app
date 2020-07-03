@@ -1,4 +1,5 @@
 import Checkout from './Checkout'
+import CheckoutSuccess from './CheckoutSuccess'
 import CoachPlanCreationA from './CoachPlanCreationA'
 import CoachPlanCreationB from './CoachPlanCreationB'
 import CoachPlanCreationSuccess from './CoachPlanCreationSuccess'
@@ -15,8 +16,9 @@ import Welcome from './Welcome'
 
 export {
   Home,
-  Checkout,
   ServiceSearchResults,
+  Checkout,
+  CheckoutSuccess,
   CoachService,
   CoachRegister,
   Info,
