@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { View, AsyncStorage } from 'react-native'
 
 import { Feather as Icon } from '@expo/vector-icons'
-import axios from 'axios'
 
 import { Header, Input, Card } from '../../components'
-import { api, coachServicesEndpoint } from '../../configs/connection'
+import { getCoachService } from '../../services/coachService'
 import { Container, Title, ScrollView } from './styles'
 
 const Home = ({ navigation }) => {
@@ -25,29 +24,16 @@ const Home = ({ navigation }) => {
   useEffect(() => {
     getToken()
     const topServicesParams = {
-      params: {}
+      params: { sort: 'desc(rating)', limit: 10 }
     }
     const recentServicesParams = {
-      params: {}
+      params: { sort: 'desc(created_at)', limit: 10 }
     }
-    const topServicesReq = api.get(
-      `/${coachServicesEndpoint}`,
-      topServicesParams
-    )
-    const recentServicesReq = api.get(
-      `/${coachServicesEndpoint}`,
-      recentServicesParams
+    getCoachService(topServicesParams).then((data) => setTopServices(data))
+    getCoachService(recentServicesParams).then((data) =>
+      setRecentServices(data)
     )
 
-    axios
-      .all([topServicesReq, recentServicesReq])
-      .then(
-        axios.spread((topServicesRes, recentServicesRes) => {
-          setTopServices(topServicesRes.data)
-          setRecentServices(recentServicesRes.data)
-        })
-      )
-      .catch((e) => console.log(e))
     return () => {}
   }, [])
 
