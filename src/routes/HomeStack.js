@@ -26,7 +26,6 @@ const HomeStack = () => {
         component={ServiceSearchResults}
         options={{ title: 'Pesquisa' }}
       />
-      <Stack.Screen name="CoachService" component={CoachService} />
       <Stack.Screen
         name="CoachPlanCreationA"
         component={CoachPlanCreationA}
