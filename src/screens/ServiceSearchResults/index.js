@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 
 import { Input, Card } from '../../components'
-import { api, coachServicesEndpoint } from '../../configs/connection'
+import { getCoachService } from '../../services/coachService'
 import { Container, ScrollView } from './styles'
 
-const ServiceSearchResults = ({ route }) => {
+const ServiceSearchResults = ({ navigation, route }) => {
   const {
     text,
     placeholder,
@@ -21,13 +21,11 @@ const ServiceSearchResults = ({ route }) => {
     const queryParams = {
       params: {
         sort: 'desc(rating)',
-        contains: `username(${encodedSearchText}),gametitle(${encodedSearchText})`
+        contains: `username(${encodedSearchText}),gameTitle(${encodedSearchText})`
       }
     }
-
-    api
-      .get(`/${coachServicesEndpoint}`, queryParams)
-      .then(({ data }) => setSearchResults(data))
+    getCoachService(queryParams)
+      .then((data) => setSearchResults(data))
       .catch((e) => console.log(e))
   }, [searchText])
 
@@ -43,16 +41,22 @@ const ServiceSearchResults = ({ route }) => {
         returnKeyType={returnKeyType}
       />
       <ScrollView>
-        {searchResults.map(({ _id, user, game, name, description, rating }) => (
-          <Card
-            key={_id}
-            coachName={user}
-            gameTitle={game}
-            serviceTitle={name}
-            serviceDetails={description}
-            score={rating}
-          />
-        ))}
+        {searchResults.map((service) => {
+          const { _id, user, game, name, description, rating } = service
+          return (
+            <Card
+              handleOnPress={() =>
+                navigation.navigate('CoachService', { service })
+              }
+              key={_id}
+              coachName={user.username}
+              gameTitle={game.gameTitle}
+              serviceTitle={name}
+              serviceDetails={description}
+              score={rating}
+            />
+          )
+        })}
       </ScrollView>
     </Container>
   )

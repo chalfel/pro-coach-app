@@ -9,8 +9,8 @@ export const TouchableContainer = styled.TouchableOpacity`
   box-shadow: 2px 2px 10px #ddd;
   margin: 16px 0 16px 16px;
   padding: 16px;
-  width: ${width * 0.8};
-  height: ${height * 0.25};
+  width: ${width * 0.8}px;
+  height: ${height * 0.25}px;
   border-radius: 8px;
 `
 
