@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled from 'styled-components/native'
 
 export const Button = styled.TouchableOpacity`
   position: absolute;
@@ -6,9 +6,10 @@ export const Button = styled.TouchableOpacity`
   justify-content: center;
   width: 50px;
   height: 50px;
-  bottom: 20px;
-  right: 20px;
+  bottom: 32px;
+  right: 32px;
+  z-index: 1;
   border-radius: 25px;
   background-color: #9c0000;
-  box-shadow: 2px 2px 10px #999;
-`;
+  box-shadow: 1px 4px 8px #aaa;
+`

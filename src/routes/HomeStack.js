@@ -7,6 +7,9 @@ import {
   Home,
   ServiceSearchResults,
   CoachService,
+  CoachPlanCreationA,
+  CoachPlanCreationB,
+  CoachPlanCreationSuccess,
   Checkout,
   CheckoutSuccess,
   Login
@@ -22,6 +25,22 @@ const HomeStack = () => {
         name="ServiceSearchResults"
         component={ServiceSearchResults}
         options={{ title: 'Pesquisa' }}
+      />
+      <Stack.Screen name="CoachService" component={CoachService} />
+      <Stack.Screen
+        name="CoachPlanCreationA"
+        component={CoachPlanCreationA}
+        options={{ title: 'Novo plano' }}
+      />
+      <Stack.Screen
+        name="CoachPlanCreationB"
+        component={CoachPlanCreationB}
+        options={{ title: 'Novo plano' }}
+      />
+      <Stack.Screen
+        name="CoachPlanCreationSuccess"
+        component={CoachPlanCreationSuccess}
+        options={{ title: 'Novo plano' }}
       />
       <Stack.Screen
         name="CoachService"

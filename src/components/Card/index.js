@@ -35,9 +35,9 @@ const Card = ({
             <GameTitle>{gameTitle}</GameTitle>
             <Rating score={score} />
           </Title>
-          <ServiceTitle>{serviceTitle}</ServiceTitle>
-          <ServiceDetails>{serviceDetails}</ServiceDetails>
         </TitleContainer>
+        <ServiceTitle>{serviceTitle}</ServiceTitle>
+        <ServiceDetails>{serviceDetails}</ServiceDetails>
       </Container>
     </TouchableContainer>
   )

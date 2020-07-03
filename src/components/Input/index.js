@@ -1,36 +1,47 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-import { Container, TextInput } from './styles'
+import { Container, TextInput, StyledIcon } from './styles'
 
 const Input = ({
-  handleOnChange,
+  handleOnChange = () => {},
   handleOnSubmit = () => {},
-  value,
-  type,
+  iconName,
+  keyboardType,
   placeholder,
   width,
+  height = 48,
   disabled,
-  height,
-  returnKeyType
+  secret,
+  multiline,
+  returnKeyType,
+  type = ''
 }) => {
-  const handleInputText = (e) => {
-    const value = e.nativeEvent.text
-    handleOnChange(value)
-  }
+  const [adaptiveHeight, setAdaptiveHeight] = useState(48)
+  const [value, setValue] = useState('')
+
   return (
-    <Container>
+    <Container height={adaptiveHeight}>
       <TextInput
         disabled={disabled}
-        onChange={handleInputText}
+        onChangeText={(text) => {
+          setValue(text)
+          handleOnChange(text)
+        }}
         onSubmitEditing={({ nativeEvent }) => handleOnSubmit(nativeEvent.text)}
         placeholder={placeholder}
         placeholderTextColor="#aaa"
-        value={value}
         width={width}
-        height={height}
-        secureTextEntry={type === 'password'}
+        value={value}
+        multiline={multiline}
+        keyboardType={keyboardType}
+        secureTextEntry={secret}
         returnKeyType={returnKeyType}
+        type={type}
+        onContentSizeChange={(e) =>
+          setAdaptiveHeight(Math.max(height, e.nativeEvent.contentSize.height))
+        }
       />
+      {iconName && <StyledIcon name={iconName} size={24} color="#bbb" />}
     </Container>
   )
 }

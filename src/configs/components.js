@@ -12,6 +12,7 @@ const NavBackButton = () => (
 
 export const defaultNavHeader = {
   headerBackImage: NavBackButton,
+  headerBackTitleVisible: false,
   headerTitleStyle: {
     color: '#9c0000'
   },

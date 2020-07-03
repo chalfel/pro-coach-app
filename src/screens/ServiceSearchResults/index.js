@@ -8,7 +8,7 @@ const ServiceSearchResults = ({ route }) => {
   const {
     text,
     placeholder,
-    searchIcon,
+    iconName,
     autoCorrectSearch,
     returnKeyType
   } = route.params
@@ -35,7 +35,7 @@ const ServiceSearchResults = ({ route }) => {
     <Container>
       <Input
         placeholder={placeholder}
-        icon={searchIcon}
+        iconName={iconName}
         value={inputValue}
         autoCorrect={autoCorrectSearch}
         handleOnSubmit={(text) => setSearchText(text)}

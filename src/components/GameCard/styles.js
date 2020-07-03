@@ -4,8 +4,9 @@ export const Container = styled.TouchableOpacity`
   display: flex;
   flex-direction: column;
   width: 100px;
-  height: 100px;
+  height: 200px;
   border-radius: 12px;
+  margin: 0 0 16px 16px;
 `
 
 export const Image = styled.Image`
