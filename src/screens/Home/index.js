@@ -58,7 +58,6 @@ const Home = ({ navigation }) => {
         placeholder={placeholder}
         iconName={iconName}
         value={inputValue}
-        type="money"
         autoCorrect={autoCorrectSearch}
         handleOnChange={(text) => setInputValue(text)}
         handleOnSubmit={(text) => {
