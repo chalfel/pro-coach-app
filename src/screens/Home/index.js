@@ -31,7 +31,6 @@ const Home = ({ navigation }) => {
     }
     getCoachService(topServicesParams).then(setTopServices)
     getCoachService(recentServicesParams).then(setRecentServices)
-
     return () => {}
   }, [])
 

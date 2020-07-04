@@ -44,7 +44,7 @@ const Login = ({ navigation, route }) => {
         value={user.email}
       />
       <Input
-        type="password"
+        secret
         placeholder="Senha"
         handleOnChange={handleOnPasswordChange}
         value={user.password}

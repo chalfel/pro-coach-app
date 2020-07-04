@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Platform } from 'react-native'
 
 import { FormTitle, Input, Button } from '../../components'
-import { api, coachesEndpoint } from '../../configs/connection'
+import { api, coachEndpoint } from '../../configs/connection'
 import { KeyboardAvoidingView } from './styles'
 
 const CoachService = ({ navigation }) => {
@@ -14,16 +14,11 @@ const CoachService = ({ navigation }) => {
     }
 
     api
-      .post(`/${coachesEndpoint}`, payload)
+      .post(`/${coachEndpoint}`, payload)
       .then(() => {
         navigation.navigate('CoachRegisterSuccess')
       })
       .catch((e) => console.log(e))
-  }
-
-  const handleOnChange = ({ target }) => {
-    const email = target.value
-    setValue(email)
   }
 
   return (
@@ -35,7 +30,7 @@ const CoachService = ({ navigation }) => {
         placeholder="E-mail"
         returnKeyType="done"
         value={value}
-        handleOnChange={handleOnChange}
+        handleOnChange={setValue}
         handleOnSubmit={() => {}}
       ></Input>
       <Button primary handleOnPress={saveCoachEmail}>

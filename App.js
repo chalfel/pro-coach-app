@@ -14,27 +14,25 @@ const App = () => {
       <AuthProvider>
         <Tab.Navigator
           screenOptions={({ route }) => ({
-            tabBarIcon: ({ color, size, focused }) => {
+            tabBarIcon: ({ size, focused }) => {
               const activeColor = '#000'
               const inactiveColor = '#bbb'
 
               if (route.name === 'Home') {
-                return focused ? (
-                  <Icon name="home" size={size} color={activeColor} />
-                ) : (
-                  <Icon name="home" size={size} color={inactiveColor} />
+                return (
+                  <Icon
+                    name="home"
+                    size={size}
+                    color={focused ? activeColor : inactiveColor}
+                  />
                 )
               } else if (route.name === 'Account') {
-                return focused ? (
-                  <Icon name="user" size={size} color={activeColor} />
-                ) : (
-                  <Icon name="user" size={size} color={inactiveColor} />
-                )
-              } else if (route.name === 'Checkout') {
-                return focused ? (
-                  <Icon name="coffee" size={size} color={activeColor} />
-                ) : (
-                  <Icon name="coffee" size={size} color={inactiveColor} />
+                return (
+                  <Icon
+                    name="user"
+                    size={size}
+                    color={focused ? activeColor : inactiveColor}
+                  />
                 )
               }
             }

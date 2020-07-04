@@ -25,7 +25,7 @@ const ServiceSearchResults = ({ navigation, route }) => {
       }
     }
     getCoachService(queryParams)
-      .then((data) => setSearchResults(data))
+      .then((data) => setSearchResults)
       .catch((e) => console.log(e))
   }, [searchText])
 
@@ -36,8 +36,8 @@ const ServiceSearchResults = ({ navigation, route }) => {
         iconName={iconName}
         value={inputValue}
         autoCorrect={autoCorrectSearch}
-        handleOnSubmit={(text) => setSearchText(text)}
-        handleOnChange={(text) => setInputValue(text)}
+        handleOnSubmit={setSearchText}
+        handleOnChange={setInputValue}
         returnKeyType={returnKeyType}
       />
       <ScrollView>

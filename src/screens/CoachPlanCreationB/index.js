@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 
 import { FormTitle, Input, Button } from '../../components'
-import { api, coachServicesEndpoint } from '../../configs/connection'
+import { api, coachServiceEndpoint } from '../../configs/connection'
 import { AuthContext } from '../../contexts'
 import { Container } from './styles'
 
@@ -15,7 +15,7 @@ const CoachPlanCreationB = ({ navigation, route }) => {
 
   const createPlan = () => {
     api
-      .post(`/${coachServicesEndpoint}`, {
+      .post(`/${coachServiceEndpoint}`, {
         name: title,
         description: description,
         user: user._id,
@@ -39,6 +39,7 @@ const CoachPlanCreationB = ({ navigation, route }) => {
         placeholder="Preço"
         keyboardType="numeric"
         iconName="dollar-sign"
+        type="money"
       />
       <Input
         onChange={setDescription}

@@ -64,14 +64,14 @@ const Register = ({ navigation }) => {
         />
         <Input
           placeholder="Senha"
-          type="password"
+          secret
           handleOnChange={handleOnPasswordChange}
           value={user.password}
         />
         <Input
           placeholder="Confirme sua senha"
           handleOnChange={handleOnConfirmPasswordChange}
-          type="password"
+          secret
           value={user.confirmPassword}
         />
         <Button primary handleOnPress={handleOnRegister}>

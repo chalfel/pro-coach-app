@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { ScrollView, View } from 'react-native'
 
 import { FormTitle, GameCard } from '../../components'
-import { api, gamesEndpoint } from '../../configs/connection'
+import { api, gameEndpoint } from '../../configs/connection'
 import { Container } from './styles'
 
 const CoachPlanCreationA = ({ navigation }) => {
@@ -10,7 +10,7 @@ const CoachPlanCreationA = ({ navigation }) => {
 
   useEffect(() => {
     api
-      .get(`/${gamesEndpoint}`)
+      .get(`/${gameEndpoint}`)
       .then(({ data }) => setAvailableGames(data))
       .catch((e) => console.log(e))
   }, [])
