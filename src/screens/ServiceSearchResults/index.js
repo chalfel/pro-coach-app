@@ -38,8 +38,8 @@ const ServiceSearchResults = ({ route }) => {
         iconName={iconName}
         value={inputValue}
         autoCorrect={autoCorrectSearch}
-        handleOnSubmit={(text) => setSearchText(text)}
-        handleOnChange={(text) => setInputValue(text)}
+        handleOnSubmit={setSearchText}
+        handleOnChange={setInputValue}
         returnKeyType={returnKeyType}
       />
       <ScrollView>

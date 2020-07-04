@@ -14,29 +14,57 @@ const Input = ({
   secret,
   multiline,
   returnKeyType,
-  type = ''
+  type = 'text',
+  maxLength = 100
 }) => {
-  const [adaptiveHeight, setAdaptiveHeight] = useState(48)
+  const [adaptiveHeight, setAdaptiveHeight] = useState(height)
   const [value, setValue] = useState('')
+
+  const mask = (text) => {
+    const slicedText = text.slice(0, maxLength)
+
+    const textFormatters = {
+      text: (text) => ({
+        formattedText: text,
+        rawText: text
+      }),
+      money: (text) => {
+        const numericValue = parseFloat(text.replace(/[^0-9]/g, '')).toFixed(2)
+        const price = isNaN(numericValue)
+          ? (0).toFixed(2)
+          : (numericValue / 100).toFixed(2)
+
+        return {
+          formattedText: `R$ ${price}`,
+          rawText: price
+        }
+      }
+    }
+
+    return textFormatters[type](slicedText)
+  }
+
+  const handleOnChangeText = (text) => {
+    const { formattedText, rawText } = mask(text)
+    setValue(formattedText)
+    handleOnChange(rawText)
+  }
 
   return (
     <Container height={adaptiveHeight}>
       <TextInput
         disabled={disabled}
-        onChangeText={(text) => {
-          setValue(text)
-          handleOnChange(text)
-        }}
+        onChange={({ nativeEvent }) => handleOnChangeText(nativeEvent.text)}
         onSubmitEditing={({ nativeEvent }) => handleOnSubmit(nativeEvent.text)}
         placeholder={placeholder}
         placeholderTextColor="#aaa"
         width={width}
+        height={height}
         value={value}
         multiline={multiline}
         keyboardType={keyboardType}
         secureTextEntry={secret}
         returnKeyType={returnKeyType}
-        type={type}
         onContentSizeChange={(e) =>
           setAdaptiveHeight(Math.max(height, e.nativeEvent.contentSize.height))
         }

@@ -39,6 +39,7 @@ const CoachPlanCreationB = ({ navigation, route }) => {
         placeholder="Preço"
         keyboardType="numeric"
         iconName="dollar-sign"
+        type="money"
       />
       <Input
         onChange={setDescription}

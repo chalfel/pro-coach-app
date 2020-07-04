@@ -3,6 +3,7 @@ import styled from 'styled-components/native'
 
 export const Container = styled.View`
   width: ${(props) => props.width || 'auto'};
+  height: ${(props) => props.height}px;
   flex-direction: row;
   align-items: center;
   border-radius: 8px;
@@ -12,6 +13,7 @@ export const Container = styled.View`
 
 export const TextInput = styled.TextInput`
   flex: 1;
+  height: ${(props) => props.height}px;
   font-size: 18px;
   padding: 0 16px;
 `
