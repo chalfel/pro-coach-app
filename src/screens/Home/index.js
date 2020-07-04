@@ -5,7 +5,7 @@ import { Feather as Icon } from '@expo/vector-icons'
 import axios from 'axios'
 
 import { Header, Input, Card } from '../../components'
-import { api, coachServicesEndpoint } from '../../configs/connection'
+import { api, coachServiceEndpoint } from '../../configs/connection'
 import { Container, Title, ScrollView } from './styles'
 
 const Home = ({ navigation }) => {
@@ -31,11 +31,11 @@ const Home = ({ navigation }) => {
       params: {}
     }
     const topServicesReq = api.get(
-      `/${coachServicesEndpoint}`,
+      `/${coachServiceEndpoint}`,
       topServicesParams
     )
     const recentServicesReq = api.get(
-      `/${coachServicesEndpoint}`,
+      `/${coachServiceEndpoint}`,
       recentServicesParams
     )
 
@@ -58,6 +58,7 @@ const Home = ({ navigation }) => {
         placeholder={placeholder}
         iconName={iconName}
         value={inputValue}
+        type="money"
         autoCorrect={autoCorrectSearch}
         handleOnChange={(text) => setInputValue(text)}
         handleOnSubmit={(text) => {

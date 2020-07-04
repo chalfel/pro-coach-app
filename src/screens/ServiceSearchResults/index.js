@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { Input, Card } from '../../components'
-import { api, coachServicesEndpoint } from '../../configs/connection'
+import { api, coachServiceEndpoint } from '../../configs/connection'
 import { Container, ScrollView } from './styles'
 
 const ServiceSearchResults = ({ route }) => {
@@ -26,7 +26,7 @@ const ServiceSearchResults = ({ route }) => {
     }
 
     api
-      .get(`/${coachServicesEndpoint}`, queryParams)
+      .get(`/${coachServiceEndpoint}`, queryParams)
       .then(({ data }) => setSearchResults(data))
       .catch((e) => console.log(e))
   }, [searchText])

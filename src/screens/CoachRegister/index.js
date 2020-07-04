@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Platform } from 'react-native'
 
 import { FormTitle, Input, Button } from '../../components'
-import { api, coachesEndpoint } from '../../configs/connection'
+import { api, coachEndpoint } from '../../configs/connection'
 import { KeyboardAvoidingView } from './styles'
 
 const CoachService = ({ navigation }) => {
@@ -14,7 +14,7 @@ const CoachService = ({ navigation }) => {
     }
 
     api
-      .post(`/${coachesEndpoint}`, payload)
+      .post(`/${coachEndpoint}`, payload)
       .then(() => {
         navigation.navigate('CoachRegisterSuccess')
       })
