@@ -1,6 +1,8 @@
-import React from 'react';
-import { Feather as Icon } from '@expo/vector-icons';
-import { Container, TextInput } from './styles';
+import React from 'react'
+
+import { Feather as Icon } from '@expo/vector-icons'
+
+import { Container, TextInput } from './styles'
 
 const SearchBar = () => {
   return (
@@ -8,9 +10,10 @@ const SearchBar = () => {
       <Icon name="search" size={24} color="#aaa" />
       <TextInput
         placeholder="Encontre coaches e games"
-        placeholderTextColor="#aaa" />
+        placeholderTextColor="#aaa"
+      />
     </Container>
-  );
+  )
 }
 
-export default SearchBar;
+export default SearchBar
