@@ -1,18 +1,25 @@
-import React, { useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { ScrollView, View } from 'react-native'
 
+import img from '../../../assets/gray.jpg'
 import { FormTitle, GameCard } from '../../components'
-import { api, gameEndpoint } from '../../configs/connection'
+import { AuthContext } from '../../contexts'
+import { getGames } from '../../services/game'
 import { Container } from './styles'
 
 const CoachPlanCreationA = ({ navigation }) => {
   const [availableGames, setAvailableGames] = useState([])
-
+  const { token } = useContext(AuthContext)
   useEffect(() => {
-    api
-      .get(`/${gameEndpoint}`)
-      .then(({ data }) => setAvailableGames(data))
-      .catch((e) => console.log(e))
+    const fetchGames = async () => {
+      try {
+        const games = await getGames(token)
+        setAvailableGames(games)
+      } catch (e) {
+        console.log(e)
+      }
+    }
+    fetchGames()
   }, [])
 
   return (
@@ -20,15 +27,15 @@ const CoachPlanCreationA = ({ navigation }) => {
       <FormTitle>Selecione o jogo</FormTitle>
       <View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {availableGames.map(({ _id, name, pictureUrl }) => (
+          {availableGames.map(({ _id, gameTitle, imgUrl }) => (
             <GameCard
               key={_id}
-              imgUrl={pictureUrl}
-              gameName={name}
+              imgUrl={imgUrl || img}
+              gameTitle={gameTitle}
               handleOnClick={() =>
                 navigation.navigate('CoachPlanCreationB', {
                   game: {
-                    name: name,
+                    name: gameTitle,
                     _id: _id
                   }
                 })

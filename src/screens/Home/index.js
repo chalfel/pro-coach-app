@@ -12,7 +12,7 @@ const Home = ({ navigation }) => {
   const [topServices, setTopServices] = useState([])
   const [recentServices, setRecentServices] = useState([])
   const [inputValue, setInputValue] = useState('')
-  const { verifyLogin } = useContext(AuthContext)
+  const { verifyLogin, signed, user } = useContext(AuthContext)
 
   const placeholder = 'Encontre jogos e coaches'
   const iconName = 'search'
@@ -114,9 +114,11 @@ const Home = ({ navigation }) => {
           })}
         </ScrollView>
       </View>
-      <AddServiceButton
-        handleOnPress={() => navigation.navigate('CoachPlanCreationA')}
-      ></AddServiceButton>
+      {signed && user.pro && (
+        <AddServiceButton
+          handleOnPress={() => navigation.navigate('CoachPlanCreationA')}
+        ></AddServiceButton>
+      )}
     </Container>
   )
 }

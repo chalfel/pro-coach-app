@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react'
 
+import img from '../../../assets/gray.jpg'
 import { ImageUpload, Input, Button, FormTitle } from '../../components'
 import { AuthContext } from '../../contexts'
 import { uploadImage } from '../../utils/uploadImages'
-import { SafeAreaView } from './styles'
+import { Container } from './styles'
 
 const MyAccount = () => {
   const { signed, user, signOut, updateUser } = useContext(AuthContext)
   const [userInfo, setUserInfo] = useState({
-    imgUrl: null,
+    imgUrl: img,
     name: '',
     username: '',
     skype: '',
@@ -48,7 +49,7 @@ const MyAccount = () => {
     setUserInfo((prev) => ({ ...prev, imgUrl }))
   }
   return (
-    <SafeAreaView>
+    <Container>
       <ImageUpload
         handleOnUpload={handleOnUpload}
         imgSrc={userInfo.imgUrl}
@@ -83,7 +84,7 @@ const MyAccount = () => {
         Salvar alterações
       </Button>
       <Button handleOnPress={signOut}>Logout</Button>
-    </SafeAreaView>
+    </Container>
   )
 }
 export default MyAccount
