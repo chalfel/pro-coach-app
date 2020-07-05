@@ -8,7 +8,6 @@ const formatters = {
     applyMask: (text) => {
       const maxPrice = 1000
       const numericValue = parseFloat(text.replace(/[^0-9]/g, ''))
-      console.log(`${numericValue} type ${typeof numericValue}`)
       if (isNaN(numericValue)) {
         return 'R$ 0,00'
       }
