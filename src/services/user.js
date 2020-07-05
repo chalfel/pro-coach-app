@@ -1,7 +1,7 @@
 import { api, userEndpoint } from '../configs/connection'
 
 export const updateUserInfo = async (user, token) => {
-  const { data } = await api.put(
+  const response = await api.put(
     `/${userEndpoint}`,
     { user },
     {
@@ -10,6 +10,9 @@ export const updateUserInfo = async (user, token) => {
       }
     }
   )
-
-  return data
+  if (response.status === 200) {
+    const { data } = response
+    return data
+  }
+  return false
 }

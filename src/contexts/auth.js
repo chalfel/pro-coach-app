@@ -1,4 +1,5 @@
 import React, { useState, createContext } from 'react'
+import { AsyncStorage } from 'react-native'
 
 import * as auth from '../services/auth'
 import { updateUserInfo } from '../services/user'
@@ -22,19 +23,53 @@ const AuthContext = createContext(initialState)
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState()
   const [user, setUser] = useState(initialState.user)
-
-  const signIn = async (tmpUser) => {
+  const getToken = async () => {
     try {
-      const response = await auth.signIn(tmpUser)
-      setToken(response.token)
-      setUser((prev) => ({ ...prev, ...response.user }))
-      return response
+      if (!token) {
+        const savedToken = await AsyncStorage.getItem('token')
+        if (!savedToken) {
+          return
+        }
+        return savedToken
+      }
+      return token
     } catch (err) {
       console.error(err)
     }
   }
 
-  const signOut = () => {
+  const verifyLogin = async () => {
+    const savedToken = await getToken()
+    if (savedToken) {
+      try {
+        const { status, user } = await auth.restoreSession(savedToken)
+        if (status === 200) {
+          setLogedInfo(savedToken, user)
+          return
+        }
+        return false
+      } catch (e) {
+        return false
+      }
+    }
+  }
+  const signIn = async (tmpUser) => {
+    try {
+      const { token, user } = await auth.signIn(tmpUser)
+      setLogedInfo(token, user)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  const setLogedInfo = async (token, user) => {
+    await AsyncStorage.setItem('token', token)
+    setToken(token)
+    setUser((prev) => ({ ...prev, ...user }))
+  }
+
+  const signOut = async () => {
+    await AsyncStorage.removeItem('token')
     setToken(false)
     setUser(initialState.user)
   }
@@ -42,6 +77,9 @@ export const AuthProvider = ({ children }) => {
   const updateUser = async (userInfo) => {
     try {
       const newUser = await updateUserInfo(userInfo, token)
+      if (!newUser) {
+        signOut()
+      }
       setUser((prev) => ({ ...prev, ...newUser }))
     } catch (err) {
       console.error(err)
@@ -50,7 +88,15 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ token, signed: !!token, signIn, user, signOut, updateUser }}
+      value={{
+        token,
+        signed: !!token,
+        signIn,
+        user,
+        signOut,
+        updateUser,
+        verifyLogin
+      }}
     >
       {children}
     </AuthContext.Provider>

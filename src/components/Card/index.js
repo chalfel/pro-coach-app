@@ -1,7 +1,6 @@
 import React from 'react'
 
-import { Rating } from '..'
-
+import { Rating } from '../../components'
 import {
   Container,
   TouchableContainer,

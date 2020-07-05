@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { AsyncStorage } from 'react-native'
 
 import { Input, Button, FormTitle } from '../../components'
 import { AuthContext } from '../../contexts'
@@ -29,8 +28,7 @@ const Login = ({ navigation, route }) => {
 
   const handleOnLogin = async (e) => {
     e.preventDefault()
-    const { token } = await signIn(user)
-    await AsyncStorage.setItem('token', token)
+    await signIn(user)
     if (redirectInfo) {
       navigation.navigate(redirectInfo.screen, redirectInfo.params)
     }
