@@ -3,7 +3,7 @@ import { View, AsyncStorage } from 'react-native'
 
 import { Feather as Icon } from '@expo/vector-icons'
 
-import { Header, Input, Card } from '../../components'
+import { Header, Input, Card, AddServiceButton } from '../../components'
 import { getCoachService } from '../../services/coachService'
 import { Container, Title, ScrollView } from './styles'
 
@@ -108,7 +108,7 @@ const Home = ({ navigation }) => {
               <Card
                 key={_id}
                 handleOnPress={() =>
-                  navigation.navigate('CoachService', service)
+                  navigation.navigate('CoachService', { service })
                 }
                 coachName={user.username}
                 gameTitle={game.name}
@@ -120,6 +120,9 @@ const Home = ({ navigation }) => {
           })}
         </ScrollView>
       </View>
+      <AddServiceButton
+        handleOnPress={() => navigation.navigate('CoachPlanCreationA')}
+      ></AddServiceButton>
     </Container>
   )
 }

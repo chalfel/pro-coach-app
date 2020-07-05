@@ -42,12 +42,14 @@ const Login = ({ navigation, route }) => {
         placeholder="E-mail"
         handleOnChange={handleOnEmailChange}
         value={user.email}
+        iconName="mail"
       />
       <Input
         secret
         placeholder="Senha"
         handleOnChange={handleOnPasswordChange}
         value={user.password}
+        iconName="lock"
       />
       <Button primary handleOnPress={handleOnLogin}>
         Entrar

@@ -22,10 +22,6 @@ const MyAccount = () => {
     }
   }, [user])
 
-  const handleOnEmailChange = (email) => {
-    setUserInfo((prev) => ({ ...prev, email }))
-  }
-
   const handleOnSkypeChange = (skype) => {
     setUserInfo((prev) => ({ ...prev, skype }))
   }
@@ -36,6 +32,9 @@ const MyAccount = () => {
 
   const handleOnDiscordChange = (discord) => {
     setUserInfo((prev) => ({ ...prev, discord }))
+  }
+  const handleOnNameChange = (name) => {
+    setUserInfo((prev) => ({ ...prev, name }))
   }
 
   const handleOnSave = async (e) => {
@@ -59,22 +58,26 @@ const MyAccount = () => {
         placeholder="Username"
         handleOnChange={handleOnUsernameChange}
         value={userInfo.username}
+        iconName="user"
       />
       <Input
         disabled
-        placeholder="E-mail"
-        handleOnChange={handleOnEmailChange}
-        value={userInfo.email}
+        placeholder="Nome"
+        handleOnChange={handleOnNameChange}
+        value={userInfo.name}
+        iconName="smile"
       />
       <Input
         placeholder="Discord"
         handleOnChange={handleOnDiscordChange}
         value={userInfo.discord}
+        iconName="message-circle"
       />
       <Input
         placeholder="Skype"
         handleOnChange={handleOnSkypeChange}
         value={userInfo.skype}
+        iconName="message-circle"
       />
       <Button primary handleOnPress={handleOnSave}>
         Salvar alterações

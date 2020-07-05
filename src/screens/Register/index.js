@@ -56,23 +56,27 @@ const Register = ({ navigation }) => {
           placeholder="E-mail"
           handleOnChange={handleOnEmailChange}
           value={user.email}
+          iconName="mail"
         />
         <Input
           placeholder="Nome de usuário"
           handleOnChange={handleOnUsernameChange}
           value={user.username}
+          iconName="user"
         />
         <Input
           placeholder="Senha"
           secret
           handleOnChange={handleOnPasswordChange}
           value={user.password}
+          iconName="lock"
         />
         <Input
           placeholder="Confirme sua senha"
           handleOnChange={handleOnConfirmPasswordChange}
           secret
           value={user.confirmPassword}
+          iconName="lock"
         />
         <Button primary handleOnPress={handleOnRegister}>
           Cadastrar

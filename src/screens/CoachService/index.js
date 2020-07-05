@@ -27,6 +27,7 @@ const CoachService = ({ navigation, route }) => {
           }
         }
       })
+      return
     }
 
     const newOrder = {
@@ -47,7 +48,7 @@ const CoachService = ({ navigation, route }) => {
       <TopContainer>
         <ProfileImage imgSrc={service.imgUrl}></ProfileImage>
         <Rating score={service.rating || 0}></Rating>
-        <CoachName>{service.user.username || ''}</CoachName>
+        <CoachName>{user.username || ''}</CoachName>
       </TopContainer>
       <PlanInfo>
         <FormTitle>{service.name}</FormTitle>
