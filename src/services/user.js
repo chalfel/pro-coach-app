@@ -10,6 +10,5 @@ export const updateUserInfo = async (user, token) => {
       }
     }
   )
-
   return data
 }

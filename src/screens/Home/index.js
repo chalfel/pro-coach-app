@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { View, AsyncStorage } from 'react-native'
+import React, { useEffect, useState, useContext } from 'react'
+import { View } from 'react-native'
 
 import { Feather as Icon } from '@expo/vector-icons'
 
 import { Header, Input, Card, AddServiceButton } from '../../components'
+import { AuthContext } from '../../contexts'
 import { getCoachService } from '../../services/coachService'
 import { Container, Title, ScrollView } from './styles'
 
@@ -11,6 +12,7 @@ const Home = ({ navigation }) => {
   const [topServices, setTopServices] = useState([])
   const [recentServices, setRecentServices] = useState([])
   const [inputValue, setInputValue] = useState('')
+  const { verifyLogin } = useContext(AuthContext)
 
   const placeholder = 'Encontre jogos e coaches'
   const iconName = 'search'
@@ -35,15 +37,7 @@ const Home = ({ navigation }) => {
       }
     }
 
-    const getToken = async () => {
-      try {
-        await AsyncStorage.getItem('token')
-      } catch (err) {
-        console.error(err)
-      }
-    }
-
-    getToken()
+    verifyLogin()
     populateCards()
   }, [])
 
