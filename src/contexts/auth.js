@@ -42,14 +42,10 @@ export const AuthProvider = ({ children }) => {
     const savedToken = await getToken()
     if (savedToken) {
       try {
-        const { status, user } = await auth.restoreSession(savedToken)
-        if (status === 200) {
-          setLogedInfo(savedToken, user)
-          return
-        }
-        return false
+        const user = await auth.restoreSession(savedToken)
+        setLogedInfo(savedToken, user)
       } catch (e) {
-        return false
+        console.log(e)
       }
     }
   }
@@ -62,9 +58,9 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
-  const setLogedInfo = async (token, user) => {
-    await AsyncStorage.setItem('token', token)
-    setToken(token)
+  const setLogedInfo = async (newToken, user) => {
+    await AsyncStorage.setItem('token', newToken)
+    setToken(newToken)
     setUser((prev) => ({ ...prev, ...user }))
   }
 
