@@ -17,21 +17,34 @@ const Home = ({ navigation }) => {
   const autoCorrectSearch = false
   const returnKeyType = 'search'
 
-  const getToken = () => {
-    AsyncStorage.getItem('token').then((token) => {})
-  }
-
   useEffect(() => {
+    const populateCards = async () => {
+      const topServicesParams = {
+        params: { sort: 'desc(rating)', limit: 10 }
+      }
+
+      const recentServicesParams = {
+        params: { sort: 'desc(created_at)', limit: 10 }
+      }
+
+      try {
+        setTopServices(await getCoachService(topServicesParams))
+        setRecentServices(await getCoachService(recentServicesParams))
+      } catch (err) {
+        console.error(err)
+      }
+    }
+
+    const getToken = async () => {
+      try {
+        await AsyncStorage.getItem('token')
+      } catch (err) {
+        console.error(err)
+      }
+    }
+
     getToken()
-    const topServicesParams = {
-      params: { sort: 'desc(rating)', limit: 10 }
-    }
-    const recentServicesParams = {
-      params: { sort: 'desc(created_at)', limit: 10 }
-    }
-    getCoachService(topServicesParams).then(setTopServices)
-    getCoachService(recentServicesParams).then(setRecentServices)
-    return () => {}
+    populateCards()
   }, [])
 
   return (
