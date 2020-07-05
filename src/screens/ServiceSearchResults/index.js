@@ -17,16 +17,23 @@ const ServiceSearchResults = ({ navigation, route }) => {
   const [inputValue, setInputValue] = useState(text)
 
   useEffect(() => {
-    const encodedSearchText = encodeURIComponent(searchText.toLowerCase())
-    const queryParams = {
-      params: {
-        sort: 'desc(rating)',
-        contains: `username(${encodedSearchText}),gameTitle(${encodedSearchText})`
+    const getSearchResults = async () => {
+      const encodedSearchText = encodeURIComponent(searchText.toLowerCase())
+      const queryParams = {
+        params: {
+          sort: 'desc(rating)',
+          contains: `username(${encodedSearchText}),gameTitle(${encodedSearchText})`
+        }
+      }
+
+      try {
+        setSearchResults(await getCoachService(queryParams))
+      } catch (err) {
+        console.error(err)
       }
     }
-    getCoachService(queryParams)
-      .then((data) => setSearchResults)
-      .catch((e) => console.log(e))
+
+    getSearchResults()
   }, [searchText])
 
   return (

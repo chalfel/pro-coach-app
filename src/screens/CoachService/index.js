@@ -22,21 +22,25 @@ const CoachService = ({ navigation, route }) => {
       navigation.navigate('Login', {
         redirect: {
           screen: 'CoachService',
-
           params: {
             service
           }
         }
       })
-      return
     }
+
     const newOrder = {
       user: user._id,
       proService: service._id,
       price: service.price
     }
-    const { uri } = await checkout(newOrder, token)
-    navigation.navigate('Checkout', { uri })
+
+    try {
+      const { uri } = await checkout(newOrder, token)
+      navigation.navigate('Checkout', { uri })
+    } catch (err) {
+      console.error(err)
+    }
   }
   return (
     <SafeAreaView>
