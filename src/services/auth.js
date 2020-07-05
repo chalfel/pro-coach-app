@@ -6,8 +6,8 @@ export const signIn = async (user) => {
 }
 
 export const restoreSession = async (token) => {
-  const response = await api.get(`/${sessionEndpoint}`, {
+  const { data } = await api.get(`/${sessionEndpoint}`, {
     headers: { authorization: `Bearer ${token}` }
   })
-  return response
+  return data
 }
