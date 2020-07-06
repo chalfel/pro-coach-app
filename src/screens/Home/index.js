@@ -3,7 +3,7 @@ import { View } from 'react-native'
 
 import { Feather as Icon } from '@expo/vector-icons'
 
-import { Header, Input, Card } from '../../components'
+import { Header, Input, Card, AddServiceButton } from '../../components'
 import { AuthContext } from '../../contexts'
 import { getCoachService } from '../../services/coachService'
 import { Container, Title, ScrollView } from './styles'
@@ -12,7 +12,7 @@ const Home = ({ navigation }) => {
   const [topServices, setTopServices] = useState([])
   const [recentServices, setRecentServices] = useState([])
   const [inputValue, setInputValue] = useState('')
-  const { verifyLogin } = useContext(AuthContext)
+  const { verifyLogin, signed, user } = useContext(AuthContext)
 
   const placeholder = 'Encontre jogos e coaches'
   const iconName = 'search'
@@ -102,7 +102,7 @@ const Home = ({ navigation }) => {
               <Card
                 key={_id}
                 handleOnPress={() =>
-                  navigation.navigate('CoachService', service)
+                  navigation.navigate('CoachService', { service })
                 }
                 coachName={user.username}
                 gameTitle={game.name}
@@ -114,6 +114,11 @@ const Home = ({ navigation }) => {
           })}
         </ScrollView>
       </View>
+      {signed && user.pro && (
+        <AddServiceButton
+          handleOnPress={() => navigation.navigate('CoachPlanCreationA')}
+        ></AddServiceButton>
+      )}
     </Container>
   )
 }

@@ -4,10 +4,10 @@ import { LinearGradient } from 'expo-linear-gradient'
 
 import { Container, Image, Text } from './styles'
 
-const GameCard = ({ imgUrl, gameName, handleOnClick }) => {
+const GameCard = ({ imgUrl, gameTitle, handleOnClick }) => {
   return (
     <Container onPress={handleOnClick}>
-      <Image source={imgUrl} />
+      <Image source={{ uri: imgUrl }} />
       <LinearGradient
         colors={['rgba(0,0,0,0.2)', 'rgba(0,0,0,0.5)', 'rgba(0,0,0,0.8)']}
         style={{
@@ -21,7 +21,7 @@ const GameCard = ({ imgUrl, gameName, handleOnClick }) => {
           alignItems: 'flex-end'
         }}
       >
-        <Text>{gameName}</Text>
+        <Text>{gameTitle}</Text>
       </LinearGradient>
     </Container>
   )

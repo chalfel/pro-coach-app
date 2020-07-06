@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react'
 
+import img from '../../../assets/gray.jpg'
 import { ImageUpload, Input, Button, FormTitle } from '../../components'
 import { AuthContext } from '../../contexts'
 import { uploadImage } from '../../utils/uploadImages'
-import { SafeAreaView } from './styles'
+import { Container } from './styles'
 
 const MyAccount = () => {
   const { signed, user, signOut, updateUser } = useContext(AuthContext)
   const [userInfo, setUserInfo] = useState({
-    imgUrl: null,
+    imgUrl: img,
     name: '',
     username: '',
     skype: '',
@@ -22,10 +23,6 @@ const MyAccount = () => {
     }
   }, [user])
 
-  const handleOnEmailChange = (email) => {
-    setUserInfo((prev) => ({ ...prev, email }))
-  }
-
   const handleOnSkypeChange = (skype) => {
     setUserInfo((prev) => ({ ...prev, skype }))
   }
@@ -36,6 +33,9 @@ const MyAccount = () => {
 
   const handleOnDiscordChange = (discord) => {
     setUserInfo((prev) => ({ ...prev, discord }))
+  }
+  const handleOnNameChange = (name) => {
+    setUserInfo((prev) => ({ ...prev, name }))
   }
 
   const handleOnSave = async (e) => {
@@ -49,7 +49,7 @@ const MyAccount = () => {
     setUserInfo((prev) => ({ ...prev, imgUrl }))
   }
   return (
-    <SafeAreaView>
+    <Container>
       <ImageUpload
         handleOnUpload={handleOnUpload}
         imgSrc={userInfo.imgUrl}
@@ -59,28 +59,32 @@ const MyAccount = () => {
         placeholder="Username"
         handleOnChange={handleOnUsernameChange}
         value={userInfo.username}
+        iconName="user"
       />
       <Input
         disabled
-        placeholder="E-mail"
-        handleOnChange={handleOnEmailChange}
-        value={userInfo.email}
+        placeholder="Nome"
+        handleOnChange={handleOnNameChange}
+        value={userInfo.name}
+        iconName="smile"
       />
       <Input
         placeholder="Discord"
         handleOnChange={handleOnDiscordChange}
         value={userInfo.discord}
+        iconName="message-circle"
       />
       <Input
         placeholder="Skype"
         handleOnChange={handleOnSkypeChange}
         value={userInfo.skype}
+        iconName="message-circle"
       />
       <Button primary handleOnPress={handleOnSave}>
         Salvar alterações
       </Button>
       <Button handleOnPress={signOut}>Logout</Button>
-    </SafeAreaView>
+    </Container>
   )
 }
 export default MyAccount
