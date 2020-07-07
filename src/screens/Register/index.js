@@ -1,20 +1,36 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
-import img from '../../../assets/gray.jpg'
 import { ImageUpload, Input, Button, FormTitle } from '../../components'
 import { api, userEndpoint } from '../../configs/connection'
 import { uploadImage } from '../../utils/uploadImages'
 import { ScrollView, Container, TopContainer } from './styles'
 
 const Register = ({ navigation }) => {
+  const [isDisabled, setIsDisabled] = useState(true)
   const [user, setUser] = useState({
-    imgUrl: img,
+    imgUrl: null,
     username: '',
     email: '',
     password: '',
     confirmPassword: ''
   })
 
+  useEffect(() => {
+    const { username, email, password, confirmPassword } = user
+    const emailRegex = new RegExp(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i)
+    if (
+      username !== '' &&
+      email !== '' &&
+      emailRegex.test(email) &&
+      password !== '' &&
+      confirmPassword !== '' &&
+      confirmPassword === password
+    ) {
+      setIsDisabled(false)
+    } else {
+      setIsDisabled(true)
+    }
+  }, [user])
   const handleOnEmailChange = (email) => {
     setUser((prev) => ({ ...prev, email }))
   }
@@ -79,7 +95,7 @@ const Register = ({ navigation }) => {
           value={user.confirmPassword}
           iconName="lock"
         />
-        <Button primary handleOnPress={handleOnRegister}>
+        <Button primary handleOnPress={handleOnRegister} disabled={isDisabled}>
           Cadastrar
         </Button>
       </ScrollView>
