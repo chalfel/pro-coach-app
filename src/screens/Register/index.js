@@ -23,6 +23,7 @@ const Register = ({ navigation }) => {
       email !== '' &&
       emailRegex.test(email) &&
       password !== '' &&
+      password.length >= 6 &&
       confirmPassword !== '' &&
       confirmPassword === password
     ) {
