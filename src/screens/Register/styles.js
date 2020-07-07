@@ -7,8 +7,6 @@ export const ScrollView = styled.ScrollView``
 export const Container = styled(KeyboardAwareScrollView)`
   flex: 1;
   background-color: #fff;
-  flex-direction: column;
-  justify-content: flex-start;
 `
 
 export const TopContainer = styled.View`
