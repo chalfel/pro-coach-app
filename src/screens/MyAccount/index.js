@@ -6,7 +6,7 @@ import { AuthContext } from '../../contexts'
 import { uploadImage } from '../../utils/uploadImages'
 import { Container } from './styles'
 
-const MyAccount = () => {
+const MyAccount = ({ navigation }) => {
   const { signed, user, signOut, updateUser } = useContext(AuthContext)
   const [userInfo, setUserInfo] = useState({
     imgUrl: img,
@@ -41,6 +41,7 @@ const MyAccount = () => {
   const handleOnSave = async (e) => {
     e.preventDefault()
     await updateUser(userInfo)
+    navigation.navigate('AccountSuccess')
   }
 
   const handleOnUpload = async (e) => {
