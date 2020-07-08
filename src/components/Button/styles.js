@@ -7,6 +7,7 @@ export const Touchable = styled.TouchableOpacity`
   border-radius: 8px;
   margin: 16px;
   background-color: ${(props) => (props.primary ? '#9c0000' : '#fff')};
+  opacity: ${(props) => (props.disabled ? '0.4' : '1')};
   border: ${(props) => (props.primary ? '0' : '1px solid #aaa')};
 `
 
