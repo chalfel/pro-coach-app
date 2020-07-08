@@ -6,6 +6,7 @@ import { Feather as Icon } from '@expo/vector-icons'
 import { Header, Input, Card, AddServiceButton } from '../../components'
 import { AuthContext } from '../../contexts'
 import { getCoachService } from '../../services/coachService'
+import { handleGenericApiError } from '../../utils/error'
 import { Container, Title, ScrollView } from './styles'
 
 const Home = ({ navigation }) => {
@@ -33,7 +34,7 @@ const Home = ({ navigation }) => {
         setTopServices(await getCoachService(topServicesParams))
         setRecentServices(await getCoachService(recentServicesParams))
       } catch (err) {
-        console.error(err)
+        handleGenericApiError(populateCards)
       }
     }
 

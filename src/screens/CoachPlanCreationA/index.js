@@ -5,20 +5,23 @@ import img from '../../../assets/gray.jpg'
 import { FormTitle, GameCard } from '../../components'
 import { AuthContext } from '../../contexts'
 import { getGames } from '../../services/game'
+import { handleGenericApiError } from '../../utils/error'
 import { Container } from './styles'
 
 const CoachPlanCreationA = ({ navigation }) => {
   const [availableGames, setAvailableGames] = useState([])
   const { token } = useContext(AuthContext)
+
   useEffect(() => {
     const fetchGames = async () => {
       try {
         const games = await getGames(token)
         setAvailableGames(games)
       } catch (e) {
-        console.log(e)
+        handleGenericApiError(fetchGames)
       }
     }
+
     fetchGames()
   }, [])
 

@@ -3,6 +3,7 @@ import { AsyncStorage } from 'react-native'
 
 import * as auth from '../services/auth'
 import { updateUserInfo } from '../services/user'
+import { handleGenericApiError } from '../utils/error'
 
 const initialState = {
   token: null,
@@ -23,6 +24,7 @@ const AuthContext = createContext(initialState)
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState()
   const [user, setUser] = useState(initialState.user)
+
   const getToken = async () => {
     try {
       if (!token) {
@@ -34,7 +36,7 @@ export const AuthProvider = ({ children }) => {
       }
       return token
     } catch (err) {
-      console.error(err)
+      handleGenericApiError(getToken)
     }
   }
 
@@ -44,30 +46,39 @@ export const AuthProvider = ({ children }) => {
       try {
         const user = await auth.restoreSession(savedToken)
         setLogedInfo(savedToken, user)
-      } catch (e) {
-        console.log(e)
+      } catch (err) {
+        handleGenericApiError(verifyLogin)
       }
     }
   }
+
   const signIn = async (tmpUser) => {
     try {
       const { token, user } = await auth.signIn(tmpUser)
       setLogedInfo(token, user)
     } catch (err) {
-      console.error(err)
+      handleGenericApiError(signIn)
     }
   }
 
   const setLogedInfo = async (newToken, user) => {
-    await AsyncStorage.setItem('token', newToken)
-    setToken(newToken)
-    setUser((prev) => ({ ...prev, ...user }))
+    try {
+      await AsyncStorage.setItem('token', newToken)
+      setToken(newToken)
+      setUser((prev) => ({ ...prev, ...user }))
+    } catch (err) {
+      handleGenericApiError(setLogedInfo)
+    }
   }
 
   const signOut = async () => {
-    await AsyncStorage.removeItem('token')
-    setToken(false)
-    setUser(initialState.user)
+    try {
+      await AsyncStorage.removeItem('token')
+      setToken(false)
+      setUser(initialState.user)
+    } catch (err) {
+      handleGenericApiError(signOut)
+    }
   }
 
   const updateUser = async (userInfo) => {
@@ -78,7 +89,7 @@ export const AuthProvider = ({ children }) => {
       }
       setUser((prev) => ({ ...prev, ...newUser }))
     } catch (err) {
-      console.error(err)
+      handleGenericApiError(updateUser)
     }
   }
 
