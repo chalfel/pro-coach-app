@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { Input, Card } from '../../components'
 import { getCoachService } from '../../services/coachService'
+import { handleGenericApiError } from '../../utils/error'
 import { Container, ScrollView } from './styles'
 
 const ServiceSearchResults = ({ navigation, route }) => {
@@ -29,7 +30,7 @@ const ServiceSearchResults = ({ navigation, route }) => {
       try {
         setSearchResults(await getCoachService(queryParams))
       } catch (err) {
-        console.error(err)
+        handleGenericApiError(getSearchResults)
       }
     }
 

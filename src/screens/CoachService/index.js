@@ -3,6 +3,7 @@ import React, { useContext } from 'react'
 import { ProfileImage, FormTitle, Button, Rating } from '../../components'
 import { AuthContext } from '../../contexts'
 import { checkout } from '../../services/order'
+import { handleGenericApiError } from '../../utils/error'
 import {
   SafeAreaView,
   TopContainer,
@@ -40,7 +41,7 @@ const CoachService = ({ navigation, route }) => {
       const { uri } = await checkout(newOrder, token)
       navigation.navigate('Checkout', { uri })
     } catch (err) {
-      console.error(err)
+      handleGenericApiError(handleOnCheckout)
     }
   }
   return (

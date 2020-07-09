@@ -2,8 +2,7 @@ import React from 'react'
 
 import { Feather as Icon } from '@expo/vector-icons'
 
-import { ProfileImage } from '..'
-
+import ProfileImage from '../ProfileImage'
 import { Container, IconContainer } from './styles'
 
 const ImageUpload = ({ imgSrc, handleOnUpload }) => {

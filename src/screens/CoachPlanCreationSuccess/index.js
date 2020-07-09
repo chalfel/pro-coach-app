@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { Info } from '..'
-
 import { Feather as Icon } from '@expo/vector-icons'
+
+import Info from '../Info'
 
 const CoachPlanCreationSuccess = () => {
   return (

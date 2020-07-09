@@ -2,6 +2,7 @@ import * as ImagePicker from 'expo-image-picker'
 import * as Permissions from 'expo-permissions'
 
 import * as file from '../services/file'
+import { handleGenericApiError } from '../utils/error'
 
 const getPermissionAsync = async () => {
   const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL)
@@ -26,6 +27,6 @@ export const uploadImage = async () => {
       }
     }
   } catch (err) {
-    console.error(err)
+    handleGenericApiError(uploadImage)
   }
 }
