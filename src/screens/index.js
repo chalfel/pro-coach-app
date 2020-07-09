@@ -9,6 +9,7 @@ import Home from './Home'
 import Info from './Info'
 import Login from './Login'
 import MyAccount from './MyAccount'
+import MyAccountSuccess from './MyAccountSuccess'
 import Register from './Register'
 import RegisterSuccess from './RegisterSuccess'
 import ServiceSearchResults from './ServiceSearchResults'
@@ -26,6 +27,7 @@ export {
   Register,
   RegisterSuccess,
   MyAccount,
+  MyAccountSuccess,
   Welcome,
   CoachPlanCreationA,
   CoachPlanCreationB,

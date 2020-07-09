@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 
 import { FormTitle, Input, Button } from '../../components'
 import { api, coachServiceEndpoint } from '../../configs/connection'
@@ -10,10 +10,19 @@ const CoachPlanCreationB = ({ navigation, route }) => {
   const [title, setTitle] = useState('')
   const [price, setPrice] = useState(0)
   const [description, setDescription] = useState('')
+  const [isDisabled, setIsDisabled] = useState(true)
 
   const { applyMask, getRawText } = mask('money')
   const { user } = useContext(AuthContext)
   const { game } = route.params
+
+  useEffect(() => {
+    if (title !== '' && price !== '' && description !== '') {
+      setIsDisabled(false)
+    } else {
+      setIsDisabled(true)
+    }
+  }, [title, price, description])
 
   const createPlan = () => {
     api
@@ -52,7 +61,7 @@ const CoachPlanCreationB = ({ navigation, route }) => {
         value={description}
         multiline
       />
-      <Button primary handleOnPress={createPlan}>
+      <Button primary handleOnPress={createPlan} disabled={isDisabled}>
         Publicar
       </Button>
     </Container>

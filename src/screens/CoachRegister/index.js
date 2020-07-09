@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Platform } from 'react-native'
 
 import { FormTitle, Input, Button } from '../../components'
@@ -7,7 +7,15 @@ import { KeyboardAvoidingView } from './styles'
 
 const CoachService = ({ navigation }) => {
   const [value, setValue] = useState('')
-
+  const [isDisabled, setIsDisabled] = useState(true)
+  useEffect(() => {
+    const regex = new RegExp(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i)
+    if (regex.test(value)) {
+      setIsDisabled(false)
+    } else {
+      setIsDisabled(true)
+    }
+  }, [value])
   const saveCoachEmail = () => {
     const payload = {
       email: value
@@ -33,7 +41,7 @@ const CoachService = ({ navigation }) => {
         handleOnChange={setValue}
         handleOnSubmit={() => {}}
       ></Input>
-      <Button primary handleOnPress={saveCoachEmail}>
+      <Button primary handleOnPress={saveCoachEmail} disabled={isDisabled}>
         Enviar
       </Button>
     </KeyboardAvoidingView>

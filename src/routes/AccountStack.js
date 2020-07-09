@@ -8,6 +8,7 @@ import { AuthContext } from '../contexts'
 import {
   Login,
   MyAccount,
+  MyAccountSuccess,
   Register,
   RegisterSuccess,
   CoachRegister,
@@ -31,11 +32,18 @@ const AccountStack = () => {
   return (
     <Stack.Navigator screenOptions={defaultNavHeader}>
       {signed ? (
-        <Stack.Screen
-          name="Account"
-          component={MyAccount}
-          options={{ title: user.username }}
-        />
+        <>
+          <Stack.Screen
+            name="Account"
+            component={MyAccount}
+            options={{ title: user.username }}
+          />
+          <Stack.Screen
+            name="AccountSuccess"
+            component={MyAccountSuccess}
+            options={{ title: user.username }}
+          />
+        </>
       ) : (
         <>
           <Stack.Screen
