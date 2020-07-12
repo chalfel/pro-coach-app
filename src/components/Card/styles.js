@@ -7,6 +7,7 @@ const { width, height } = Dimensions.get('window')
 export const TouchableContainer = styled.TouchableOpacity`
   background: #fff;
   box-shadow: 2px 2px 10px #ddd;
+  elevation: 3;
   margin: 16px 0 16px 16px;
   padding: 16px;
   width: ${width * 0.8}px;
