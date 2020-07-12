@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }) => {
         const user = await auth.restoreSession(savedToken)
         setLogedInfo(savedToken, user)
       } catch (err) {
-        handleGenericApiError(verifyLogin)
+        // handleGenericApiError(verifyLogin)
       }
     }
   }
