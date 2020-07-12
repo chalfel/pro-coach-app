@@ -1,8 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react'
 
 import { FormTitle, Input, Button } from '../../components'
-import { api, coachServiceEndpoint } from '../../configs/connection'
 import { AuthContext } from '../../contexts'
+import { createCoachService } from '../../services/coachService'
+import { handleGenericApiError } from '../../utils/error'
 import mask from '../../utils/inputMasks'
 import { Container } from './styles'
 
@@ -13,7 +14,7 @@ const CoachPlanCreationB = ({ navigation, route }) => {
   const [isDisabled, setIsDisabled] = useState(true)
 
   const { applyMask, getRawText } = mask('money')
-  const { user } = useContext(AuthContext)
+  const { user, token } = useContext(AuthContext)
   const { game } = route.params
 
   useEffect(() => {
@@ -25,16 +26,16 @@ const CoachPlanCreationB = ({ navigation, route }) => {
   }, [title, price, description])
 
   const createPlan = () => {
-    api
-      .post(`/${coachServiceEndpoint}`, {
-        name: title,
-        description: description,
-        user: user._id,
-        price: parseFloat(getRawText(price)),
-        game: game._id
-      })
+    const payload = {
+      name: title,
+      description: description,
+      user: user._id,
+      price: parseFloat(getRawText(price)),
+      game: game._id
+    }
+    createCoachService(payload, token)
       .then(() => navigation.navigate('CoachPlanCreationSuccess'))
-      .catch((err) => console.log(err))
+      .catch(() => handleGenericApiError(createPlan))
   }
 
   return (
