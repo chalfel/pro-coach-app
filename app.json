@@ -4,8 +4,7 @@
     "slug": "ProCoach",
     "platforms": [
       "ios",
-      "android",
-      "web"
+      "android"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
@@ -22,7 +21,13 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.procoach.procoach",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.procoach.procoach",
+      "versionCode": 1
     },
     "sdkVersion": "37.0.0"
   }
